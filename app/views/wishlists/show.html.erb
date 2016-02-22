@@ -2,5 +2,5 @@
 
 <%= link_to "Back to All Wishlists", wishlists_path, class: "btn btn-primary" %>
 <%= link_to "Edit Wishlist", edit_wishlist_path(id: wishlist.id), class: "btn btn-primary" %>
-<%= link_to "Delete Wishlist", wishlist_path, method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
+<%= link_to "Delete Wishlist", wishlist_path, method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure you want to delete this wishlist and all of the gifts along with it?' } %>
 
