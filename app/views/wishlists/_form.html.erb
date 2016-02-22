@@ -1,4 +1,4 @@
-<%= form_for wishlist do |f| %>
+<%= form_for @wishlist do |f| %>
 
 <div class="form-group">
 	<%= f.label :name %> <br>
@@ -8,3 +8,5 @@
 <div class="actions">
 	<%= f.submit "Submit", class: 'btn btn-primary' %> <br>
 </div>
+
+<% end %>

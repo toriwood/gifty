@@ -1,5 +1,5 @@
 <h1>Wishlists</h1>
 
 <% @wishlists.each do |wishlist| %>
-	<%= link_to wishlist.name, wishlist_path(id: wishlist.id) %>
+	<%= link_to wishlist.name, wishlist_path(id: wishlist.id) %> <br>
 <% end %>

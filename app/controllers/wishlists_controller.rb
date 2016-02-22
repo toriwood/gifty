@@ -3,13 +3,17 @@ class WishlistsController < ApplicationController
   	@wishlists = Wishlist.all
   end
 
+  def new
+  	@wishlist = Wishlist.new
+  end
+
   def show
   end
 
   def create
   	@wishlist = Wishlist.create(wishlist_params)
 
-  	if @user.save
+  	if @wishlist.save
   		flash[:success] = "Wishlist created successfully!"
   		redirect_to wishlists_path
   	else
