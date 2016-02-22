@@ -1,2 +1,6 @@
-<h1>Wishlists#show</h1>
-<p>Find me in app/views/wishlists/show.html.erb</p>
+<h1><strong><%= wishlist.name %></strong></h1>
+
+<%= link_to "Back to All Wishlists", wishlists_path, class: "btn btn-primary" %>
+<%= link_to "Edit Wishlist", edit_wishlist_path(id: wishlist.id), class: "btn btn-primary" %>
+<%= link_to "Delete Wishlist", wishlist_path, method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
+
