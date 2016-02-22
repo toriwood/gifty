@@ -1,0 +1,10 @@
+<%= form_for wishlist do |f| %>
+
+<div class="form-group">
+	<%= f.label :name %> <br>
+	<%= f.text_field :name, class: "form-control" %>
+</div>
+
+<div class="actions">
+	<%= f.submit "Submit", class: 'btn btn-primary' %> <br>
+</div>

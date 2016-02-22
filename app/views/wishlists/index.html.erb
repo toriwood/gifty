@@ -1,2 +1,5 @@
-<h1>Wishlists#index</h1>
-<p>Find me in app/views/wishlists/index.html.erb</p>
+<h1>Wishlists</h1>
+
+<% @wishlists.each do |wishlist| %>
+	<%= link_to wishlist.name, wishlist_path(id: wishlist.id) %>
+<% end %>
