@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 #Added gems
 gem 'pry'
 gem 'pry-rails'
+gem 'bootstrap-sass'
 
 
 gem 'rails', '4.2.4'
