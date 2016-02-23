@@ -4,11 +4,7 @@ class WishlistsController < ApplicationController
   end
 
   def new
-  	@wishlist = Wishlist.new
-  end
-
-  def edit
-    @wishlist = wishlist
+  	wishlist = Wishlist.new
   end
 
   def show
@@ -47,7 +43,7 @@ class WishlistsController < ApplicationController
 private
 
 	def wishlist
-		wishlist = Wishlist.find(params[:id])		
+		Wishlist.find(params[:id])		
 	end
 
 	helper_method :wishlist
