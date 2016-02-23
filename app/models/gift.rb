@@ -1,5 +1,6 @@
 class Gift < ActiveRecord::Base
-	belongs_to :wishlist
+  belongs_to :user
+  belongs_to :wishlist
 
 	validates :url, presence: true, :unless => :image?
 	validates :image, presence: true, :unless => :url?
