@@ -17,12 +17,11 @@ class GiftsController < ApplicationController
 
   def create
   	@gift = Gift.create(gift_params)
-
-  	if @gift.save
-  		flash[:success] = "The gift was successfully added to the #{@gift.wishlist.name} wishlist."
-  		redirect_to gifts_path
-  	else
-  		flash[:error] = "There was a problem creating this gift. Try again."
+    if @gift.save
+      flash[:success] = "The gift was successfully added to the #{@gift.wishlist.name} wishlist."
+      redirect_to gifts_path
+    else
+      flash[:error] = "There was a problem creating this gift. Try again."
   		redirect_to new_gift_path
   	end
   end
@@ -54,7 +53,7 @@ class GiftsController < ApplicationController
   helper_method :gift
 
   def gift_params
-  	params.require(:gift).permit(:id, :name, :wishlist_id, :url, :description)  	
+  	params.require(:gift).permit(:id, :name, :wishlist_id, :url, :description, :image)  	
   end
 
 end
