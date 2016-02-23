@@ -1,5 +1,7 @@
 <h1>Wishlists</h1>
 
 <% @wishlists.each do |wishlist| %>
-	<%= link_to wishlist.name, wishlist_path(id: wishlist.id) %> <br>
+	<div class="well col-md-2">
+		<%= link_to wishlist.name, wishlist_path(id: wishlist.id) %> <br>
+</div>
 <% end %>
