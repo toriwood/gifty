@@ -14,12 +14,12 @@
 
 	<div class="form-group">
 		<%= f.label :url %>
-		<%= f.text_area :url, class: "form-control" %>
+		<%= f.text_field :url, class: "form-control" %>
 	</div>
 
 	<div class="form-group">
-		<%= f.label :wishlist %>
-		<%= f.collection_select :wishlist, @wishlists, :id, :name, class: "form-control" %>
+		<%= f.label :wishlist_id %>
+		<%= f.collection_select :wishlist_id, @wishlists, :id, :name, class: "form-control" %>
 	</div>
 	
 	<div class="actions">

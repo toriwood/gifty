@@ -4,7 +4,7 @@ class WishlistsController < ApplicationController
   end
 
   def new
-  	wishlist = Wishlist.new
+  	@wishlist = Wishlist.new
   end
 
   def show
@@ -37,13 +37,14 @@ class WishlistsController < ApplicationController
 
   def destroy
     wishlist.destroy
+    flash[:success] = "Wishlist deleted successfully."
     redirect_to wishlists_path
   end
 
 private
 
 	def wishlist
-		Wishlist.find(params[:id])		
+		@wishlist ||= Wishlist.find(params[:id])		
 	end
 
 	helper_method :wishlist

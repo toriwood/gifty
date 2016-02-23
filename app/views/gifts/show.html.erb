@@ -1,2 +1,9 @@
-<h1>Gifts#show</h1>
-<p>Find me in app/views/gifts/show.html.erb</p>
+<div class="well">
+	<h1><strong><%= gift.name.titlecase %></strong></h1>
+	<p>From: <%= link_to gift.wishlist.name, wishlist_path(id: gift.wishlist_id) %></p>
+	<p><%= link_to "Source", gift.url, target: "blank" %></p>
+	<p>Description: <%= gift.description %></p>
+	<hr>
+	<%= link_to "Edit", edit_gift_path(id: gift.id), class: "btn btn-primary" %>
+	<%= link_to "Delete", gift_path(id: gift.id), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
+</div>
