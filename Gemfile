@@ -5,6 +5,7 @@ gem 'pry'
 gem 'pry-rails'
 gem 'bootstrap-sass'
 gem 'paperclip'
+gem 'devise'
 
 
 gem 'rails', '4.2.4'
