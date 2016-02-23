@@ -1,7 +1,12 @@
-<h1>Wishlists</h1>
+
+<%= link_to new_wishlist_path, class: "btn btn-primary pull-right" do %>
+	<i class="glyphicon glyphicon-plus"></i> New Wishlist
+<% end %>
+
+<h1><strong>Wishlists</strong></h1>
 
 <% @wishlists.each do |wishlist| %>
-	<div class="well col-md-2">
-		<%= link_to wishlist.name, wishlist_path(id: wishlist.id) %> <br>
-</div>
+	<div class="well col-md-3">
+		<%= link_to wishlist.name.titlecase, wishlist_path(id: wishlist.id) %> <br>
+	</div>
 <% end %>

@@ -1,12 +1,16 @@
-<%= link_to "Create a new gift", new_gift_path, class: "pull-right btn btn-primary" %>
-<h1><strong>All Gifts</strong></h1>
+<%= link_to new_gift_path, class: "pull-right btn btn-primary" do %>
+	<i class="glyphicon glyphicon-plus"></i> New Gift
+<% end %>
+<h3><strong>All Gifts</strong></h1>
 
 <% @gifts.each do |gift| %>
-<div class="well">
-	<h1><strong><%= gift.name.titlecase %></strong></h1>
-	<p>From: <%= link_to gift.wishlist.name, wishlist_path(id: gift.wishlist_id) %></p>
-	<p><%= link_to "Source", gift.url, target: "blank" %></p>
+<div class="well col-md-3">
+	<div class="title">
+		<h3><strong><%= gift.name.titlecase %></strong></h3>
+	</div>
+		<p>From: <%= link_to gift.wishlist.name, wishlist_path(id: gift.wishlist_id) %></p>
 	<p>Description: <%= gift.description %></p>
+	<h6><%= link_to "Source", gift.url, target: "blank" %></h6>
 	<hr>
 	<%= link_to "Edit", edit_gift_path(id: gift.id), class: "btn btn-primary" %>
 	<%= link_to "Delete", gift_path(id: gift.id), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
