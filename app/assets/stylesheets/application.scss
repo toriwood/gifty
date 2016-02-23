@@ -29,3 +29,38 @@
 div {
 	font-family: 'Oxygen', Helvetica, Arial, sans-serif;
 }
+
+.container .show {
+	text-align: center;
+	padding-bottom: 20px;
+}
+
+.container .show h1 {
+	padding-bottom: 15px;
+}
+
+.add-new {
+	border: 2px dashed gray;
+	height: 200px;
+	background-color: #F5F5F5;
+}
+
+.add-new:hover {
+	background-color: white;
+	color: red;
+}
+
+.plus-sign {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-color: lightgray;
+	margin: 0 auto;
+	margin-top: 50px;
+}
+
+.plus-sign i {
+	color: white;
+	margin-top: 10px;
+	margin-left: 2px;
+}

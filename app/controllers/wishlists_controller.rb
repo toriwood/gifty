@@ -8,6 +8,7 @@ class WishlistsController < ApplicationController
   end
 
   def show
+    @gifts = Gift.where(wishlist_id: wishlist.id)
   end
 
   def create
@@ -29,7 +30,7 @@ class WishlistsController < ApplicationController
       flash[:success] = "Wishlist updated successfully!"
       redirect_to wishlist_path
     else
-      flash[:error] = "There was a problme updating this wishlist. Try again."
+      flash[:error] = "There was a problem updating this wishlist. Try again."
       redirect_to edit_wishlist_path
     end
     
