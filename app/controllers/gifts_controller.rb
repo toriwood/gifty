@@ -1,6 +1,7 @@
 class GiftsController < ApplicationController
   def index
   	@gifts = Gift.all
+    @interests = Interest.all
   end
 
   def edit
