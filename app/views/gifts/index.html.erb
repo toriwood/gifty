@@ -1,12 +1,12 @@
 <%= link_to new_gift_path, class: "pull-right btn btn-primary" do %>
 	<i class="glyphicon glyphicon-plus"></i> New Gift
 <% end %>
-<h3><strong>All Gifts</strong></h1>
+<h1>All Gifts</h1>
 
 <% @gifts.each do |gift| %>
 <div class="well col-md-3">
 	<div class="title">
-		<h3><strong><%= gift.name.titlecase %></strong></h3>
+		<h3><%= gift.name.titlecase %></h3>
 	</div>
 		<p>From: <%= link_to gift.wishlist.name, wishlist_path(id: gift.wishlist_id) %></p>
 	<p>Description: <%= gift.description %></p>
