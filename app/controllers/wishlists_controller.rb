@@ -51,7 +51,7 @@ private
 	helper_method :wishlist
 	
 	def wishlist_params
-		params.require(:wishlist).permit(:id, :name)
+		params.require(:wishlist).permit(:id, :name, :user_id)
 	end
 
 

@@ -55,7 +55,7 @@ class GiftsController < ApplicationController
   helper_method :gift
 
   def gift_params
-  	params.require(:gift).permit(:id, :name, :wishlist_id, :url, :description, :image)  	
+  	params.require(:gift).permit(:id, :name, :wishlist_id, :url, :description, :image, :user_id)  	
   end
 
 end
