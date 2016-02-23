@@ -4,6 +4,8 @@ source 'https://rubygems.org'
 gem 'pry'
 gem 'pry-rails'
 gem 'bootstrap-sass'
+gem 'paperclip'
+
 
 gem 'rails', '4.2.4'
 gem 'sass-rails', '~> 5.0'
