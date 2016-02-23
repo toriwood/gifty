@@ -21,7 +21,9 @@ class GiftsController < ApplicationController
       flash[:success] = "The gift was successfully added to the #{@gift.wishlist.name} wishlist."
       redirect_to gifts_path
     else
-      flash[:error] = "There was a problem creating this gift. Try again."
+      @gift.errors.messages.each do |message|
+        flash[:error] = message[1][0]
+      end
   		redirect_to new_gift_path
   	end
   end

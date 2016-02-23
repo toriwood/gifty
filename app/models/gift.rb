@@ -11,7 +11,7 @@ class Gift < ActiveRecord::Base
 
 
   def url_xor_image
-  	 unless url.blank? ^ image.blank?
+  	 unless url.nil? ^ image.nil?
   	 	errors.add(:base, "Specify a url or upload an image, not both.")
   	 end
   end
