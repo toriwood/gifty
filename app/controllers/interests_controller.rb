@@ -13,6 +13,8 @@ class InterestsController < ApplicationController
   	@interest ||= Interest.find(params[:id])
   end
 
+  helper_method :interest
+
   def interest_params
   	params.require(:interest).permit(:id, :name, :subcategory, :category)
   end
