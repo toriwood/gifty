@@ -1,2 +1,11 @@
-<h1>Gifts#index</h1>
-<p>Find me in app/views/gifts/index.html.erb</p>
+<h1><strong>All Gifts</strong></h1>
+
+<% @gifts.each do |gift| %>
+<div class="well">
+	<h1><strong>gift.name</strong></h1>
+	<p>From: <%= gift.wishlist.name %></p>
+	<p><%= link_to "Source", gift.url %></p>
+	<p>Description: <%= gift.description %></p>
+</div>
+
+<% end %>

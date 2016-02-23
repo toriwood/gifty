@@ -3,8 +3,13 @@ class GiftsController < ApplicationController
   	@gifts = Gift.all
   end
 
+  def edit
+  	@wishlists = Wishlist.all
+  end
+
   def new
   	gift = Gift.new
+  	@wishlists = Wishlist.all
   end
 
   def show
