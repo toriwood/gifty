@@ -15,13 +15,22 @@
 
   <div class="form-group">
     <%= f.label :username %><br />
-    <%= f.text_field :userame, class: "form-control" %>
+    <%= f.text_field :username, class: "form-control" %>
+  </div>
+
+   <div class="form-group">
+    <%= f.label :birthday %><br />
+    <%= f.date_select "birthday", prompt: {day: 'Select day', month: 'Select month', year: 'Select year'}, start_year: Date.today.year - 100, end_year: Date.today.year %>
   </div>
 
   <div class="form-group">
-    <%= f.label :birthday %><br />
-    <%= f.date_field :birthday, class: "form-control" %>
+    <%= f.label :gender %> <br>
+    <%= f.radio_button :gender, "male" %>
+    <%= f.label :gender, "male" %>
+    <%= f.radio_button :gender, "female" %>
+    <%= f.label :gender, "female" %>
   </div>
+
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
