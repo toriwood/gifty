@@ -8,4 +8,9 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  def age
+  	(Date.today - self.birthday).to_i / 365
+  end
+
 end

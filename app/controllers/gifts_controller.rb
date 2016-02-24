@@ -1,4 +1,6 @@
 class GiftsController < ApplicationController
+  before_filter :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
+  
   def index
   	@gifts = Gift.all
     @interests = Interest.all

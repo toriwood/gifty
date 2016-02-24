@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   get 'interests/show'
 
-  devise_for :users
+  devise_for :users, :controllers => { registrations: 'users/registrations' }
   resources :gifts
   resources :wishlists
 
