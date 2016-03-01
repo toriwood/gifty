@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   
-  get 'interests/index'
-
-  get 'interests/show'
+  get '/interests' => 'interests#index'
+  get '/interests/:id' => 'interests#show', as: "interest"
 
   devise_for :users, :controllers => { registrations: 'users/registrations' }
   resources :gifts
