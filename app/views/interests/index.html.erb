@@ -1,2 +1,11 @@
-<h1>Interests#index</h1>
-<p>Find me in app/views/interests/index.html.erb</p>
+<% @interests.group_by(&:category).each do |category, interests| %>
+	<strong><%= category %></strong> <br>
+	
+	<% interests.group_by(&:subcategory).each do |subcategory, interests| %>
+	<strong><%= subcategory %></strong> <br>
+
+		<% interests.each do |interest| %>
+		<%= interest.name %> <br>
+		<% end %>
+	<% end %>
+<% end %>

@@ -17,6 +17,10 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+body {
+	background-color: #CDEAE5;
+}
+
 .well {
 	text-align: center;
 	margin: 5px;
@@ -63,4 +67,34 @@ div {
 	color: white;
 	margin-top: 10px;
 	margin-left: 2px;
+}
+
+.navbar-default {
+	background-color: #7F171F;
+}
+
+.navbar-default .navbar-nav > li > a,
+.navbar-default .navbar-brand {
+	color: #21B6A8;	
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-brand:hover {
+	color: #177F75;	
+}
+
+.btn, .btn-primary {
+	background-color: #21B6A8;
+	border: 1px solid #21B6A8;
+	color: #7F171F;
+}
+
+.btn:hover, .btn-primary:hover {
+	background-color: #21B6A8;
+	border: 1px solid #21B6A8;
+	color: #B6212D;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: #7F171F;
 }
