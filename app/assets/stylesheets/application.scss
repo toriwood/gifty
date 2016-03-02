@@ -21,6 +21,10 @@ body {
 	background-color: #CDEAE5;
 }
 
+.container {
+	margin: 0 auto;
+}
+
 .well {
 	text-align: center;
 	margin: 5px;
@@ -87,14 +91,34 @@ div {
 	background-color: #21B6A8;
 	border: 1px solid #21B6A8;
 	color: #7F171F;
+	margin: 5px;
 }
 
 .btn:hover, .btn-primary:hover {
 	background-color: #21B6A8;
 	border: 1px solid #21B6A8;
 	color: #B6212D;
+	margin: 5px;
 }
 
 h1, h2, h3, h4, h5, h6 {
 	color: #7F171F;
+}
+
+div.container.interests {
+	margin-left: 20px;
+}
+
+div.container.interests.index {
+	margin: 0 auto;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	text-align: center;
+}
+
+.row {
+	margin: 0 auto;
 }

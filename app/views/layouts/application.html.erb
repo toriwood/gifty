@@ -67,9 +67,9 @@
     <% end %>
    </div>
 
-<div class="container">
-<%= yield %>
-</div>
+  <div class="container <%= controller.controller_path %> <%= controller.action_name %>">
+    <%= yield %>
+  </div>
 
 </body>
 </html>
