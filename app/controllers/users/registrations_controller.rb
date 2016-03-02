@@ -2,6 +2,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   before_filter :configure_permitted_parameters
 
+  helper_method :interests
+
+  def interests
+    @interests = Interest.all
+  end
+
   protected
 
 

@@ -51,6 +51,23 @@
     <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
   </div>
 
+   <div class="form-group">
+    <%= f.label "Interests (Please select at least 2 interests)" %>
+    <% interests.group_by(&:category).each do |category, interests| %>
+   
+      <strong><h3><%= category %></h3></strong>
+
+      <% interests.group_by(&:subcategory).each do |subcategory, interests| %>
+      <strong><h4><%= subcategory %></h4></strong>
+
+        <% interests.each do |interest| %>
+      <%= link_to interest.name, interest %> <br>
+    <% end %>
+  <% end %>
+<% end %>
+</div>
+
+
   <div class="actions">
     <%= f.submit "Update", class: "btn btn-primary" %>
   </div>
