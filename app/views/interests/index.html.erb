@@ -5,7 +5,7 @@
 	<strong><%= subcategory %></strong> <br>
 
 		<% interests.each do |interest| %>
-		<%= interest.name %> <br>
+		<%= link_to interest.name, interest %> <br>
 		<% end %>
 	<% end %>
 <% end %>

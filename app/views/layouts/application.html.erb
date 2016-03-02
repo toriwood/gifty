@@ -53,6 +53,7 @@
               <% interests.each do |interest| %>
               <li><%= link_to interest.name, interest %></li>
               <% end %>
+              <strong><li><%= link_to "Browse All", interests_path, style: "padding-left: 20px" %></li></strong>
             </ul>
           </li>
         </ul>

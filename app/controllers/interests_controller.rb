@@ -4,6 +4,7 @@ class InterestsController < ApplicationController
   end
 
   def show
+    @gifts = Gift.where(interest_id: interest.id)
   end
 
 

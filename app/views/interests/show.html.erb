@@ -1,1 +1,5 @@
 <h1><strong><%= interest.name %></strong></h1>
+
+<% @gifts.each do |gift| %>
+<%= link_to gift.name, gift %>
+<% end %>

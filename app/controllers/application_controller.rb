@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 	helper_method :interests
 
 	def interests
-		@interests = Interest.uniq(:category).sort
+		@interests = Interest.uniq(:category).take(20)
 	end
 
   # Prevent CSRF attacks by raising an exception.
