@@ -6,6 +6,7 @@ gem 'pry-rails'
 gem 'bootstrap-sass'
 gem 'paperclip'
 gem 'devise'
+gem 'metainspector'
 
 
 gem 'rails', '4.2.4'
