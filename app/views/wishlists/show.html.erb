@@ -1,12 +1,20 @@
 
+<div class="container">
+	<%= link_to "Back to all wishlists", wishlists_path, class: "btn btn-primary" %>
+</div>
+
 <div class="container show">
 <h1><%= wishlist.name %></h1>
+<h4>By: <%= wishlist.user.username %></h4>
 
+
+<% if user_signed_in? && current_user.id == wishlist.user_id %>
 <%= link_to edit_wishlist_path(id: wishlist.id), class: "btn btn-primary" do %>
 	<i class="glyphicon glyphicon-pencil"></i> Edit
 <% end %>
 <%= link_to wishlist_path, method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure you want to delete this wishlist and all of the gifts along with it?' } do %>
 	<i class="glyphicon glyphicon-remove"></i> Delete Wishlist
+<% end %>
 <% end %>
 </div>
 
@@ -39,6 +47,3 @@
 	<% end %>
 </div>
 
-<div class="container">
-	<%= link_to "Back to all wishlists", wishlists_path, class: "btn btn-primary" %>
-</div>

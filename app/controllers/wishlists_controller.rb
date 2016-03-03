@@ -1,4 +1,6 @@
 class WishlistsController < ApplicationController
+  before_filter :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
+  
   def index
   	@wishlists = Wishlist.all
   end
