@@ -1,4 +1,5 @@
 class Gift < ActiveRecord::Base
+
   belongs_to :user
   belongs_to :wishlist
   belongs_to :interest
