@@ -37,6 +37,22 @@
   <% end %>
 
   <div class="form-group">
+    <%= f.label :interests %> <i>(please select at least 2)</i> <br>
+    <% interests.group_by(&:category).each do |category, interests| %>
+      <strong><h4><%= category %></h4></strong>
+
+      <% interests.group_by(&:subcategory).each do |subcategory, interests| %>
+      <strong><h5><%= subcategory %></h5></strong>
+      
+        <% interests.each do |interest| %>
+        <%= f.check_box :interests, {multiple: true}, interest.name, nil %>
+        <%= f.label interest.name %> <br>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="form-group">
     <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
     <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
   </div>
@@ -50,23 +66,6 @@
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
   </div>
-
-   <div class="form-group">
-    <%= f.label "Interests (Please select at least 2 interests)" %>
-    <% interests.group_by(&:category).each do |category, interests| %>
-   
-      <strong><h3><%= category %></h3></strong>
-
-      <% interests.group_by(&:subcategory).each do |subcategory, interests| %>
-      <strong><h4><%= subcategory %></h4></strong>
-
-        <% interests.each do |interest| %>
-      <%= link_to interest.name, interest %> <br>
-    <% end %>
-  <% end %>
-<% end %>
-</div>
-
 
   <div class="actions">
     <%= f.submit "Update", class: "btn btn-primary" %>
