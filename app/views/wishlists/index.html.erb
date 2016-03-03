@@ -1,9 +1,15 @@
-
-<%= link_to new_wishlist_path, class: "btn btn-primary pull-right" do %>
-	<i class="glyphicon glyphicon-plus"></i> New Wishlist
-<% end %>
-
 <h1>Wishlists</h1>
+
+	<%= link_to new_wishlist_path do %>
+	<div class="well col-md-2 add-new">
+		<div class="plus-sign">
+			<i class="glyphicon glyphicon-plus"></i>
+		</div>
+		<br>
+		Add A Wishlist
+	</div>
+	<% end %>
+
 
 <% @wishlists.each do |wishlist| %>
 	<div class="well col-md-3">
