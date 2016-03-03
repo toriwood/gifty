@@ -7,10 +7,12 @@ class GiftsController < ApplicationController
   end
 
   def edit
+    @interests = current_user.interests
   	@wishlists = Wishlist.all
   end
 
   def new
+    @interests = current_user.interests
   	@gift = Gift.new
   	@wishlists = Wishlist.all
   end

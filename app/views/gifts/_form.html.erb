@@ -23,7 +23,7 @@
 		<%= f.label :image %>
 		<%= f.file_field :image, class: "form-control" %>
 	</div>
-
+	
 	<div class="form-group">
 		<%= f.label :wishlist_id %>
 		<%= f.collection_select :wishlist_id, @wishlists, :id, :name, class: "form-control" %>
