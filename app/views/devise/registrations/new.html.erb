@@ -31,21 +31,46 @@
     <%= f.label :gender, "female" %>
   </div>
 
-  <div class="form-group">
-    <%= f.label :interests %> <i>(please select at least 2)</i> <br>
-    <% interests.group_by(&:category).each do |category, interests| %>
-      <strong><h4><%= category %></h4></strong>
 
-      <% interests.group_by(&:subcategory).each do |subcategory, interests| %>
-      <strong><h5><%= subcategory %></h5></strong>
-      
-        <% interests.each do |interest| %>
-        <%= f.check_box :interests, {multiple: true}, interest.name, nil %>
-        <%= f.label interest.name %> <br>
+  <%= f.label :interests %> <i>(please select at least 2)</i>
+  <% interests.group_by(&:category).each_with_index do |(category, interests), index| %>
+  <div class="panel-group" id="accordion<%= index %>" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="heading<%= index %>">
+        <h4 class="panel-title">
+          <a role="button" data-toggle="collapse" data-parent="#accordion<%= index %>" href="#collapse<%= index %>" aria-expanded="true" aria-controls="collapse<%= index %>">
+           <%= category %>
+          </a>
+        </h4>
+      </div>
+      <div id="collapse<%= index %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<%= index %>">
+        <div class="panel-body">
+        <% interests.group_by(&:subcategory).each do |subcategory, interests| %>
+           <div class="panel-group" id="accordion-<%= subcategory.gsub(' ','-') %>">
+            <div class="panel panel-default">
+              <div class="panel-heading" id="heading-<%= subcategory.gsub(' ','-') %>">
+                <h4 class="panel-title">
+                  <a role="button" data-toggle="collapse" data-parent="#accordion-<%= subcategory.gsub(' ','-') %>" href="#collapse-<%= subcategory.gsub(' ','-') %>" aria-expanded="true" aria-controls="collapse-<%= subcategory.gsub(' ','-') %>">
+                   <%= subcategory %>
+                  </a>
+                </h4>
+              </div>
+              <div id="collapse-<%= subcategory.gsub(' ','-') %>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-<%= subcategory.gsub(' ','-') %>">
+                <div class="panel-body">
+                  <% interests.each do |interest| %>
+                  <%= f.check_box :interests, {multiple: true}, interest.name, nil %>
+                  <%= f.label interest.name %> <br>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
         <% end %>
-      <% end %>
-    <% end %>
+        </div>
+      </div>
+    </div>
   </div>
+<% end %>
 
   <div class="form-group">
     <%= f.label :password %>
