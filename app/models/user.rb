@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-	has_many :wishlists
-	has_many :gifts
+	has_many :wishlists, dependent: :destroy
+	has_many :gifts, dependent: :destroy
 	
 	serialize :interests, Array
 	
