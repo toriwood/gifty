@@ -22,9 +22,8 @@ class GiftsController < ApplicationController
   end
 
   def create
-    @gift = Gift.new(gift_params)
-    page = MetaInspector.new(gift_params[:url])
-  	# @gift = Gift.create(gift_params)
+    @gift = Gift.create(gift_params)
+
     if @gift.save
       flash[:success] = "The gift was successfully added to the #{@gift.wishlist.name} wishlist."
       redirect_to gifts_path
