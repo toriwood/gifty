@@ -24,8 +24,16 @@ class GiftsController < ApplicationController
   def create
     @gift = Gift.new(gift_params)
     page = MetaInspector.new(gift_params[:url])
-    @gift.name = page.title
-    @gift.description = page.description
+    if page.meta_tags['name']['twitter:title'] == nil
+        @gift.name = page.title
+      else
+        @gift.name = page.meta_tags['name']['twitter:title'][0]
+      end
+      if page.meta_tags['name']['twitter:description'] == nil
+        @gift.description = page.description
+      else
+        @gift.description = page.meta_tags['name']['twitter:description'][0]
+      end
     @gift.image_remote_url = page.images.best
     @gift.save
 
