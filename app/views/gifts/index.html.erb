@@ -13,7 +13,7 @@
 <% @gifts.each do |gift| %>
 <div class="well col-md-3">
 	<div class="title">
-		<h3><%= gift.name.titlecase %></h3>
+		<h3><%= link_to gift.name.titlecase, gift %></h3>
 		<%= link_to gift do %>
 			<% if gift.image_file_name.nil? %>
 				<%= image_tag gift.image_remote_url %>

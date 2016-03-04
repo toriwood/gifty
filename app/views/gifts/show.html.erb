@@ -1,6 +1,6 @@
 <div class="well">
-	<h2><strong><%= link_to gift.name.titlecase, gift %></strong></h2>
-	<%= link_to gift do %>
+	<h2><strong><%= link_to gift.name.titlecase, gift.url, target: "_blank" %></strong></h2>
+	<%= link_to gift.url, target: "_blank" do %>
 			<% if gift.image_file_name.nil? %>
 				<%= image_tag gift.image_remote_url %>
 			<% else %>
