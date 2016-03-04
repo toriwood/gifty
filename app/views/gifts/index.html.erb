@@ -15,8 +15,11 @@
 			<% end %>
 		<% end %>
 	</div>
-		<p><%= link_to "See more from #{gift.wishlist.name}", wishlist_path(id: gift.wishlist_id) %></p>
 	<p><%= gift.description %></p>
+		<p>
+			<%= link_to "See more gifts from #{gift.wishlist.name}", wishlist_path(id: gift.wishlist_id) %>
+			<!-- link to user path -->
+		</p>
 	<h6><%= link_to "Original Source", gift.url, target: "blank" %></h6>
 	<hr>
 	<%= link_to "Edit", edit_gift_path(id: gift.id), class: "btn btn-primary" %>
