@@ -3,7 +3,7 @@
 	<br>
 	<br>
 <h3><%= wishlist.name %></h3>
-<h4>By: <%= wishlist.user.username %></h4>
+<h4>By: <%= link_to wishlist.user.username, wishlist.user %></h4>
 
 
 <% if user_signed_in? && current_user.id == wishlist.user_id %>
