@@ -22,7 +22,12 @@ class GiftsController < ApplicationController
   end
 
   def create
-    @gift = Gift.create(gift_params)
+    @gift = Gift.new(gift_params)
+    page = MetaInspector.new(gift_params[:url])
+    @gift.name = page.title
+    @gift.description = page.description
+    @gift.image_remote_url = page.images.best
+    @gift.save
 
     if @gift.save
       flash[:success] = "The gift was successfully added to the #{@gift.wishlist.name} wishlist."
@@ -31,9 +36,23 @@ class GiftsController < ApplicationController
       @gift.errors.messages.each do |message|
         flash[:error] = message[1][0]
       end
-  		redirect_to new_gift_path
-  	end
+      redirect_to new_gift_path
+    end
   end
+
+  # def manual_create
+  #   @gift = Gift.create(gift_params)
+
+  #   if @gift.save
+  #     flash[:success] = "The gift was successfully added to the #{@gift.wishlist.name} wishlist."
+  #     redirect_to gifts_path
+  #   else
+  #     @gift.errors.messages.each do |message|
+  #       flash[:error] = message[1][0]
+  #     end
+  # 		redirect_to new_gift_path
+  # 	end
+  # end
 
   def update
   	@gift = Gift.update(params[:id], gift_params)

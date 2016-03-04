@@ -1,21 +1,15 @@
 class Gift < ActiveRecord::Base
-
+  attr_reader :image_remote_url
   belongs_to :user
   belongs_to :wishlist
   belongs_to :interest
 
-	validates :url, presence: true, :unless => :image?
-	validates :image, presence: true, :unless => :url?
-
-	validate :url_xor_image
-
-	has_attached_file :image, styles: { medium: "300x300>", thumb: "200x200>" }, default_url: "/images/:style/missing.png"
+  has_attached_file :image, styles: { medium: "300x300>", thumb: "200x200>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
-
-  def url_xor_image
-  	 unless url.empty? ^ image_file_name.nil?
-  	 	errors.add(:base, "Specify a url or upload an image, not both.")
-  	 end
+  def image_remote_url=(url_value)
+    self.image = URI.parse(url_value)
+    @image_remote_url = url_value
   end
+
 end

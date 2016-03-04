@@ -9,15 +9,15 @@
 		<h3><%= gift.name.titlecase %></h3>
 		<%= link_to gift do %>
 			<% if gift.image_file_name.nil? %>
-				<%= image_tag gift.url %>
+				<%= image_tag gift.image_remote_url %>
 			<% else %>
 				<%= image_tag gift.image.url(:thumb) %>
 			<% end %>
 		<% end %>
 	</div>
-		<p>From: <%= link_to gift.wishlist.name, wishlist_path(id: gift.wishlist_id) %></p>
-	<p>Description: <%= gift.description %></p>
-	<h6><%= link_to "Source", gift.url, target: "blank" %></h6>
+		<p><%= link_to "See more from #{gift.wishlist.name}", wishlist_path(id: gift.wishlist_id) %></p>
+	<p><%= gift.description %></p>
+	<h6><%= link_to "Original Source", gift.url, target: "blank" %></h6>
 	<hr>
 	<%= link_to "Edit", edit_gift_path(id: gift.id), class: "btn btn-primary" %>
 	<%= link_to "Delete", gift_path(id: gift.id), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>

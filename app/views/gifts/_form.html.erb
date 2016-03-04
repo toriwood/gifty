@@ -1,27 +1,12 @@
 <div class="container">
 
 	<%= form_for gift, html: { multipart: true } do |f| %>
-
-	<div class="form-group">
-		<%= f.label :name %>
-		<%= f.text_field :name, class: "form-control" %>
-	</div>
 	
 	<%= f.hidden_field :user_id, value: current_user.id %>
 
 	<div class="form-group">
-		<%= f.label :description %>
-		<%= f.text_area :description, class: "form-control" %>
-	</div>
-
-	<div class="form-group">
 		<%= f.label :url %>
 		<%= f.text_field :url, class: "form-control" %>
-	</div>
-
-	<div class="form-group">
-		<%= f.label :image %>
-		<%= f.file_field :image, class: "form-control" %>
 	</div>
 	
 	<div class="form-group">
