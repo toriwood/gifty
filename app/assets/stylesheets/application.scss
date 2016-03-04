@@ -110,7 +110,7 @@ div {
 }
 
 h1, h2, h3, h4, h5, h6 {
-	color: #7F171F;
+	color: #B6212D;
 }
 
 div.container.interests {
@@ -129,4 +129,12 @@ div.container.interests.index {
 
 .row {
 	margin: 0 auto;
+}
+
+a {
+	color: #21B6A8;
+}
+
+a:hover, a:focus {
+	color: #B6212D;
 }

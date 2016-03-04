@@ -1,8 +1,15 @@
 <div class="well">
 	<h1><strong><%= link_to gift.name.titlecase, gift %></strong></h1>
-	<p>From: <%= link_to gift.wishlist.name, wishlist_path(id: gift.wishlist_id) %></p>
+	<%= link_to gift do %>
+			<% if gift.image_file_name.nil? %>
+				<%= image_tag gift.image_remote_url %>
+			<% else %>
+				<%= image_tag gift.image.url(:thumb) %>
+			<% end %>
+		<% end %>
+	<p><%= link_to "See more from #{gift.wishlist.name}", wishlist_path(id: gift.wishlist_id) %></p>
+	<p><%= gift.description %></p>
 	<p><%= link_to "Source", gift.url, target: "blank" %></p>
-	<p>Description: <%= gift.description %></p>
 	<hr>
 	<%= link_to "Edit", edit_gift_path(id: gift.id), class: "btn btn-primary" %>
 	<%= link_to "Delete", gift_path(id: gift.id), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>

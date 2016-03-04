@@ -15,7 +15,7 @@ class GiftsController < ApplicationController
   def new
     @interests = current_user.interests
   	@gift = Gift.new
-  	@wishlists = Wishlist.all
+  	@wishlists = Wishlist.where(user_id: current_user.id)
   end
 
   def show
