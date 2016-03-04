@@ -13,6 +13,7 @@
 
 <% @wishlists.each do |wishlist| %>
 	<div class="well col-md-3">
-		<%= link_to wishlist.name.titlecase, wishlist_path(id: wishlist.id) %> <br>
+		<%= link_to image_tag(wishlist.gifts.first.image.url(:thumb)), wishlist %>
+		<h3><%= link_to wishlist.name.titlecase, wishlist_path(id: wishlist.id) %></h3>
 	</div>
 <% end %>
