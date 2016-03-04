@@ -1,39 +1,39 @@
-<h1>All Gifts</h1>
+<div id="grid">
 
-<%= link_to new_gift_path do %>
-	<div class="well col-md-3 add-new">
-		<div class="plus-sign">
-			<i class="glyphicon glyphicon-plus"></i>
-		</div>
-		<br>
-		Add A Gift
-	</div>
-<% end %>
+	<%= link_to new_gift_path do %>
+			<div class="well add-new">
+				<div class="plus-sign">
+					<i class="glyphicon glyphicon-plus"></i>
+				</div>
+				<br>
+				Add A Gift
+			</div>
+		<% end %>
 
-<% @gifts.each do |gift| %>
-<div class="well col-md-3">
-	<div class="title">
-		<h3><%= link_to gift.name.titlecase, gift %></h3>
-		<%= link_to gift do %>
-			<% if gift.image_file_name.nil? %>
-				<%= image_tag gift.image_remote_url %>
-			<% else %>
-				<%= image_tag gift.image.url(:thumb) %>
+	<% @gifts.each do |gift| %>
+	<div class="well">
+		<div class="title">
+			<h3><%= link_to gift.name.titlecase, gift %></h3>
+			<%= link_to gift do %>
+				<% if gift.image_file_name.nil? %>
+					<%= image_tag gift.image_remote_url %>
+				<% else %>
+					<%= image_tag gift.image.url(:thumb) %>
+				<% end %>
 			<% end %>
-		<% end %>
+		</div>
+		<p><%= gift.description %></p>
+			
+			<p>
+				<%= link_to "See more gifts from #{gift.wishlist.name}", wishlist_path(id: gift.wishlist_id) %>
+				<!-- link to user path -->
+			</p>
+		<h6><%= link_to "Original Source", gift.url, target: "blank" %></h6>
+			<% if user_signed_in? && current_user.id == gift.user_id %>
+				<hr>
+				<%= link_to "Edit", edit_gift_path(id: gift.id), class: "btn btn-primary" %>
+				<%= link_to "Delete", gift_path(id: gift.id), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
+			<% end %>
 	</div>
-	<p><%= gift.description %></p>
-		
-		<p>
-			See more gifts from <strong><%= link_to gift.wishlist.name, wishlist_path(id: gift.wishlist_id) %></strong>
-			<!-- link to user path -->
-		</p>
-	<h6><%= link_to "Original Source", gift.url, target: "blank" %></h6>
-		<% if user_signed_in? && current_user.id == gift.user_id %>
-			<hr>
-			<%= link_to "Edit", edit_gift_path(id: gift.id), class: "btn btn-primary" %>
-			<%= link_to "Delete", gift_path(id: gift.id), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
-		<% end %>
-</div>
-
 <% end %>
+</div>

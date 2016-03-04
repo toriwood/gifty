@@ -28,7 +28,52 @@ div.container {
 .well {
 	text-align: center;
 	margin: 5px;
-	float: left;
+	display: inline-block;
+}
+
+#grid {
+	-moz-column-count: 4;
+ -moz-column-gap: 0px;
+ -webkit-column-count: 4;
+ -webkit-column-gap: 0px;
+ column-count: 4;
+ column-gap: 0px;
+} 
+ 
+@media only screen and (max-width : 1199px),
+only screen and (max-device-width : 1199px){
+ #grid {
+ -moz-column-count: 3;
+ -moz-column-gap: 0px;
+ -webkit-column-count: 3;
+ -webkit-column-gap: 0px;
+ column-count: 3;
+ column-gap: 0px;
+ }
+}
+ 
+@media only screen and (max-width : 999px),
+only screen and (max-device-width : 999px){
+ #grid {
+ -moz-column-count: 2;
+ -moz-column-gap: 0px;
+ -webkit-column-count: 2;
+ -webkit-column-gap: 0px;
+ column-count: 2;
+ column-gap: 0px;
+ }
+}
+
+@media only screen and (max-width : 599px),
+only screen and (max-device-width : 599px){
+ #grid {
+ -moz-column-count: 1;
+ -moz-column-gap: 0px;
+ -webkit-column-count: 1;
+ -webkit-column-gap: 0px;
+ column-count: 1;
+ column-gap: 0px;
+ }
 }
 
 .title {
@@ -45,10 +90,11 @@ div {
 
 .add-new {
 	border: 2px dashed gray;
+	width: 96%;
 	min-height: 200px;
 	background-color: #F5F5F5;
 	color: #21B6A8;
-	float: left;
+	display: inline-block;
 }
 
 .add-new:hover {
@@ -139,9 +185,4 @@ a:hover, a:focus {
 
 img {
 	border-radius: 7px;
-}
-
-div.container.gifts.index {
-	margin: 0;
-	padding: 15px;
 }
