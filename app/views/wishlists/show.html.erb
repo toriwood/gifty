@@ -1,10 +1,8 @@
-
-<div class="container">
-	<%= link_to "Back to all wishlists", wishlists_path, class: "btn btn-primary" %>
-</div>
-
+	<%= link_to "Back to all wishlists", wishlists_path, class: "btn btn-primary pull-left" %>
 <div class="container show">
-<h1><%= wishlist.name %></h1>
+	<br>
+	<br>
+<h3><%= wishlist.name %></h3>
 <h4>By: <%= wishlist.user.username %></h4>
 
 
