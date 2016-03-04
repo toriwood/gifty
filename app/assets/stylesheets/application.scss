@@ -28,7 +28,7 @@ div.container {
 .well {
 	text-align: center;
 	margin: 5px;
-	float: right;
+	float: left;
 }
 
 .title {
@@ -45,9 +45,10 @@ div {
 
 .add-new {
 	border: 2px dashed gray;
-	height: 200px;
+	min-height: 200px;
 	background-color: #F5F5F5;
 	color: #21B6A8;
+	float: left;
 }
 
 .add-new:hover {
@@ -107,6 +108,7 @@ div {
 
 h1, h2, h3, h4, h5, h6 {
 	color: #B6212D;
+	margin-top: 5px;
 }
 
 div.container.interests {
@@ -137,4 +139,9 @@ a:hover, a:focus {
 
 img {
 	border-radius: 7px;
+}
+
+div.container.gifts.index {
+	margin: 0;
+	padding: 15px;
 }
