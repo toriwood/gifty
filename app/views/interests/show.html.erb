@@ -1,8 +1,9 @@
 <h1><strong><%= interest.name %></strong></h1>
 
+<div id="grid">
 	<% @gifts.each do |gift| %>
 		<% if gift.user.interests.include?(interest.name) %>
-		<div class="well col-md-3">
+		<div class="well">
 			<h1><%= link_to gift.name.titlecase, gift %></h1>
 			<p>From: <%= link_to gift.wishlist.name, wishlist_path(id: gift.wishlist_id) %></p>
 			<p><%= link_to "Source", gift.url, target: "blank" %></p>
@@ -10,3 +11,4 @@
 		</div>
 		<% end %>
 	<% end %>
+</div>
