@@ -18,9 +18,14 @@
 			<% else %>
 				<%= link_to image_tag(wishlist.gifts.first.image.url(:thumb)), wishlist %>
 			<% end %>
-			<p>See more from <%= link_to wishlist.user.username, wishlist.user%></p>
+			<hr>
+			<h6><%= link_to image_tag(wishlist.user.image.url(:thumb), class: "show-image"), wishlist.user, class: "pull-left" %></h6>
+		<div class="pull-left">
+			<h6><%= link_to "#{wishlist.user.username}", wishlist.user %></h6>
+		</div>
 			</p>
 			<% if user_signed_in? && current_user.id == wishlist.user_id %>
+				<div class="clearfix"></div>
 				<hr>
 				<%= link_to "Edit", edit_wishlist_path(id: wishlist.id), class: "btn btn-primary" %>
 				<%= link_to "Delete", wishlist_path(id: wishlist.id), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
