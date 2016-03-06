@@ -191,3 +191,21 @@ img {
 .profile-image {
 	border-radius: 50%;
 }
+
+.show-image {
+	width: 50%;
+	height: 50%;
+	border-radius: 50%;
+}
+
+hr {
+	height: 1px;
+	color: #B6212D;
+	background-color: #B6212D;
+	border: none;
+}
+
+.clearfix {
+	float: none;
+	clear: both;
+}

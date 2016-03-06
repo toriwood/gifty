@@ -39,7 +39,7 @@ class GiftsController < ApplicationController
 
     if @gift.save
       flash[:success] = "The gift was successfully added to the #{@gift.wishlist.name} wishlist."
-      redirect_to gifts_path
+      redirect_to wishlist_path(id: @gift.wishlist_id)
     else
       @gift.errors.messages.each do |message|
         flash[:error] = message[1][0]

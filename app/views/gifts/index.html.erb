@@ -23,11 +23,17 @@
 			<% end %>
 		</div>
 		<p><%= gift.description %></p>
-			
-			<p>See more gifts from <%= link_to gift.wishlist.name, gift.wishlist %></p>
-			<p>See more from <%= link_to gift.user.username, gift.user %></p>
-		<h6><%= link_to "Original Source", gift.url, target: "blank" %></h6>
+
+		<hr>
+
+		<h6><%= link_to image_tag(gift.user.image.url(:thumb), class: "show-image"), gift.user, class: "pull-left" %></h6>
+		<div class="pull-left">
+			<h6><%= link_to gift.wishlist.name, gift.wishlist %></h6> 
+			<h6><%= link_to "by #{gift.user.username}", gift.user %></h6>
+		</div>
+
 			<% if user_signed_in? && current_user.id == gift.user_id %>
+			<div class="clearfix"></div>
 				<hr>
 				<%= link_to "Edit", edit_gift_path(id: gift.id), class: "btn btn-primary" %>
 				<%= link_to "Delete", gift_path(id: gift.id), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
