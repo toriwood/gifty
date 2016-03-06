@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160301162012) do
+ActiveRecord::Schema.define(version: 20160306143941) do
 
   create_table "gifts", force: :cascade do |t|
     t.string   "name"
@@ -54,6 +54,10 @@ ActiveRecord::Schema.define(version: 20160301162012) do
     t.string   "gender"
     t.text     "interests"
     t.date     "birthday"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
