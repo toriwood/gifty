@@ -1,21 +1,18 @@
-<% @interests.group_by(&:category).each_with_index do |(category, interests), index| %>
-<% if (index + 1) % 5 == 0 %>
-<div class="row">
-<% end %>
-<div class="well col-md-2 col-md-offset-1 col-lg-2 col-lg-offset-1">
-	<strong><h3><%= category %></h3></strong>
+<div class="grid">
+	<% @interests.group_by(&:category).each do |category, interests| %>
 
-	<% interests.group_by(&:subcategory).each do |subcategory, interests| %>
-	<div>
-	<strong><h4><%= subcategory %></h4></strong>
-
-		<% interests.each do |interest| %>
-		<%= link_to interest.name, interest %> <br>
+	<div class="well">
+		<strong><h3><%= category %></h3></strong>
+	
+		<% interests.group_by(&:subcategory).each do |subcategory, interests| %>
+		<div>
+		<strong><h4><%= subcategory %></h4></strong>
+	
+			<% interests.each do |interest| %>
+			<%= link_to interest.name, interest %> <br>
+			<% end %>
+		</div>
 		<% end %>
 	</div>
 	<% end %>
 </div>
-	<% if (index + 1) % 5 == 0 %>
-			</div>
-	<% end %>
-<% end %>
