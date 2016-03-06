@@ -18,7 +18,7 @@ class WishlistsController < ApplicationController
 
   	if @wishlist.save
   		flash[:success] = "Wishlist created successfully!"
-  		redirect_to wishlists_path
+  		redirect_to @wishlist
   	else
   		flash[:error] = "There was a problem creating this wishlist. Try again."
   		redirect_to new_wishlist_path

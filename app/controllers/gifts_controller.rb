@@ -10,6 +10,8 @@ class GiftsController < ApplicationController
   def edit
     @interests = current_user.interests
   	@wishlists = Wishlist.all
+    page = MetaInspector.new(gift.url)
+    @images = page.images.take(10)
   end
 
   def new
@@ -38,8 +40,7 @@ class GiftsController < ApplicationController
     @gift.save
 
     if @gift.save
-      flash[:success] = "The gift was successfully added to the #{@gift.wishlist.name} wishlist."
-      redirect_to gift.wishlist
+      redirect_to edit_gift_path(@gift.id)
     else
       @gift.errors.messages.each do |message|
         flash[:error] = message[1][0]
@@ -66,11 +67,11 @@ class GiftsController < ApplicationController
   	@gift = Gift.update(params[:id], gift_params)
 
   	if @gift.save
-  		flash[:success] = "The gift was successfully updated."
-  		redirect_to gift_path
+  		flash[:success] = "The gift information was updated in the #{gift.wishlist.name.titlecase} wishlist."
+  		redirect_to @gift
   	else
   		flash[:error] = "There was a problem updating this gift. Try again."
-  		redirect_to edit_gift_path
+  		redirect_to edit_gift_path(params[:id])
   	end  	
   end
 
