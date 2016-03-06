@@ -1,24 +1,30 @@
 <div class="grid">
+
 	<%= link_to new_wishlist_path do %>
-	<div class="well add-new">
-		<div class="plus-sign">
-			<i class="glyphicon glyphicon-plus"></i>
-		</div>
-		<br>
-		Add A Wishlist
-	</div>
-	<% end %>
-
-
-<% @wishlists.each do |wishlist| %>
-	<div class="well">
-		<% if wishlist.gifts.first == nil %>
-		<%= link_to image_tag("gift.png"), wishlist %>
-		<% else %>
-		<%= link_to image_tag(wishlist.gifts.first.image.url(:thumb)), wishlist %>
+			<div class="well add-new">
+				<div class="plus-sign">
+					<i class="glyphicon glyphicon-plus"></i>
+				</div>
+				<br>
+				Add A Wishlist
+			</div>
 		<% end %>
-		<h3><%= link_to wishlist.name.titlecase, wishlist %></h3>
+
+	<% @wishlists.each do |wishlist| %>
+	<div class="well">
+			<h3><%= link_to wishlist.name.titlecase, wishlist %></h3>
+			<% if wishlist.gifts.first == nil %>
+				<%= link_to image_tag("gift.png"), wishlist %>
+			<% else %>
+				<%= link_to image_tag(wishlist.gifts.first.image.url(:thumb)), wishlist %>
+			<% end %>
+			<p>See more from <%= link_to wishlist.user.username, wishlist.user%></p>
+			</p>
+			<% if user_signed_in? && current_user.id == wishlist.user_id %>
+				<hr>
+				<%= link_to "Edit", edit_wishlist_path(id: wishlist.id), class: "btn btn-primary" %>
+				<%= link_to "Delete", wishlist_path(id: wishlist.id), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
+			<% end %>
 	</div>
 <% end %>
-
 </div>
