@@ -24,10 +24,8 @@
 		</div>
 		<p><%= gift.description %></p>
 			
-			<p>
-				<%= link_to "See more gifts from #{gift.wishlist.name}", wishlist_path(id: gift.wishlist_id) %>
-				<!-- link to user path -->
-			</p>
+			<p>See more gifts from <%= link_to gift.wishlist.name, gift.wishlist %></p>
+			<p>See more from <%= link_to gift.user.username, gift.user %></p>
 		<h6><%= link_to "Original Source", gift.url, target: "blank" %></h6>
 			<% if user_signed_in? && current_user.id == gift.user_id %>
 				<hr>

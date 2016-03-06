@@ -1,4 +1,3 @@
-	<%= link_to "Back to all wishlists", wishlists_path, class: "btn btn-primary pull-left" %>
 <div class="container show">
 	<br>
 	<br>
@@ -17,33 +16,30 @@
 </div>
 
 <hr>
-
-	<%= link_to new_gift_path do %>
-	<div class="well col-md-2 add-new">
-		<div class="plus-sign">
-			<i class="glyphicon glyphicon-plus"></i>
+<div class="grid">
+		<%= link_to new_gift_path do %>
+		<div class="well add-new">
+			<div class="plus-sign">
+				<i class="glyphicon glyphicon-plus"></i>
+			</div>
+			<br>
+			Add A Gift
 		</div>
-		<br>
-		Add A Gift
-	</div>
-	<% end %>
-
-<div class="container">
-	<% @gifts.each do |gift| %>
-		<div class="well col-md-3">
-			<div class="title">
-				<h3><%= link_to gift.name.titlecase, gift %></h3>
-			<%= link_to gift do %>
-			<% if gift.image_file_name.nil? %>
-				<%= image_tag gift.url %>
-			<% else %>
-				<%= image_tag gift.image.url(:thumb) %>
+		<% end %>
+	
+		<% @gifts.each do |gift| %>
+			<div class="well">
+					<h3><%= link_to gift.name.titlecase, gift %></h3>
+				<%= link_to gift do %>
+				<% if gift.image_file_name.nil? %>
+					<%= image_tag gift.url %>
+				<% else %>
+					<%= image_tag gift.image.url(:thumb) %>
+				<% end %>
 			<% end %>
+				<p><%= gift.description %></p>
+				<h6><%= link_to "Original Source", gift.url, target: "blank" %></h6>
 			</div>
 		<% end %>
-			<p><%= gift.description %></p>
-			<h6><%= link_to "Source", gift.url, target: "blank" %></h6>
-		</div>
-	<% end %>
+	</div>
 </div>
-
