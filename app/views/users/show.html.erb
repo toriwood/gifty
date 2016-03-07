@@ -3,6 +3,13 @@
 	<h3><%= user.name %></h3>
 	<h3><%= user.username %></h3>
 
+	<div class="container show-center">
+		<%= link_to simple_format(user.wishlists.count.to_s + "\n Wishlists"), user %>
+		<%= link_to simple_format(user.gifts.count.to_s + "\n Gifts"), user %>
+		<%= link_to simple_format(user.followers.count.to_s + "\n Followers"), user %>
+		<%= link_to simple_format(user.following.count.to_s + "\n Following"), user %>
+	</div>
+
 	<% if current_user.id != user.id %>
 	<% if current_user.friends.include?(user) %>
 	<%=	link_to "Unfollow", relationship_path(current_user.relationships.find_by_friend_id(user)), method: :delete, class: "btn btn-primary" %>

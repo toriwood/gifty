@@ -89,6 +89,20 @@ div {
 	text-align: center;
 }
 
+.container .show-center {
+	width: 400px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.container .show-center a {
+	display: inline-block;
+}
+
+.show-center p {
+	margin: 10px;
+}
+
 .add-new {
 	border: 2px dashed gray;
 	width: 96%;
@@ -190,6 +204,7 @@ img {
 
 .profile-image {
 	border-radius: 50%;
+
 }
 
 .show-image {
