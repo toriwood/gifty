@@ -22,9 +22,15 @@ class GiftsController < ApplicationController
   end
 
   def new
+  	@wishlists = current_user.wishlists
+
+    if @wishlists.empty?
+      redirect_to new_wishlist_path
+      flash[:danger] = "You must create a wishlist first in order to save your gift."     
+    end
+
     @interests = current_user.interests
-  	@gift = Gift.new
-  	@wishlists = Wishlist.where(user_id: current_user.id)
+    @gift = Gift.new
   end
 
   def show
@@ -50,7 +56,7 @@ class GiftsController < ApplicationController
       redirect_to edit_gift_path(@gift.id)
     else
       @gift.errors.messages.each do |message|
-        flash[:error] = message[1][0]
+        flash[:danger] = message[1][0]
       end
       redirect_to new_gift_path
     end
@@ -69,7 +75,7 @@ class GiftsController < ApplicationController
   		flash[:success] = "The gift information was updated in the #{gift.wishlist.name.titlecase} wishlist."
   		redirect_to @gift
   	else
-  		flash[:error] = "There was a problem updating this gift. Try again."
+  		flash[:danger] = "There was a problem updating this gift. Try again."
   		redirect_to edit_gift_path(params[:id])
   	end  	
   end

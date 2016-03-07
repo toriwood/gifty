@@ -5,10 +5,10 @@ class RelationshipsController < ApplicationController
   	current_user.save
 
 		if @relationship.save
-			flash[:notice] = "Followed Successfully."
+			flash[:info] = "Followed Successfully."
 			redirect_to user_path(params[:friend_id])
 		else
-			flash[:notice] = "Something went wrong."
+			flash[:info] = "Something went wrong."
 			redirect_to root_path
 		end
 	end
@@ -17,7 +17,7 @@ class RelationshipsController < ApplicationController
 		@relationship = current_user.relationships.find(params[:id])
 
 		@relationship.destroy
-		flash[:notice] = "Successfully unfollowed."
+		flash[:info] = "Successfully unfollowed."
 		redirect_to root_path		
 	end
 

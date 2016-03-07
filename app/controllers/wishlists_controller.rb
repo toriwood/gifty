@@ -20,7 +20,7 @@ class WishlistsController < ApplicationController
   		flash[:success] = "Wishlist created successfully!"
   		redirect_to @wishlist
   	else
-  		flash[:error] = "There was a problem creating this wishlist. Try again."
+  		flash[:danger] = "There was a problem creating this wishlist. Try again."
   		redirect_to new_wishlist_path
   	end
   end
@@ -32,7 +32,7 @@ class WishlistsController < ApplicationController
       flash[:success] = "Wishlist updated successfully!"
       redirect_to wishlist_path
     else
-      flash[:error] = "There was a problem updating this wishlist. Try again."
+      flash[:danger] = "There was a problem updating this wishlist. Try again."
       redirect_to edit_wishlist_path
     end
     
