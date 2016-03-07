@@ -32,6 +32,10 @@ div.container {
 	min-width: 96%;
 }
 
+.grid div.well {
+	display: inline-block;
+}
+
 .grid {
 	-moz-column-count: 4;
  -moz-column-gap: 0px;
