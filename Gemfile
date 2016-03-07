@@ -7,6 +7,7 @@ gem 'bootstrap-sass'
 gem 'paperclip'
 gem 'devise'
 gem 'metainspector'
+gem 'simple_form'
 
 gem 'rails', '4.2.4'
 gem 'sass-rails', '~> 5.0'
