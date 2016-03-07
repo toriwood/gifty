@@ -11,7 +11,7 @@
 		<% end %>
 
 	<% @gifts.each do |gift| %>
-	<% if current_user.following.include?(gift.user_id.to_s) %>
+	<% if user_signed_in? && (current_user.following.include?(gift.user_id.to_s)|| gift.user_id == current_user.id) %>
 	<div class="well">
 		<div class="title">
 			<h3><%= link_to gift.name.titlecase, gift %></h3>
@@ -31,14 +31,13 @@
 		<div class="pull-left">
 			<h6><%= link_to gift.wishlist.name, gift.wishlist %></h6> 
 			<h6><%= link_to "by #{gift.user.username}", gift.user %></h6>
-			<h6><%= gift.user.special_days %></h6>
 		</div>
 
 			<% if user_signed_in? && current_user.id == gift.user_id %>
 			<div class="clearfix"></div>
 				<hr>
-				<%= link_to "Edit", edit_gift_path(id: gift.id), class: "btn btn-primary" %>
-				<%= link_to "Delete", gift_path(id: gift.id), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
+				<%= link_to "Edit", edit_gift_path(gift), class: "btn btn-primary" %>
+				<%= link_to "Delete", gift_path(gift), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
 			<% end %>
 	</div>
 	<% end %>
