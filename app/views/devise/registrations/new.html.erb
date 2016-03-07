@@ -1,30 +1,30 @@
 <h2>Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true }) do |f| %>
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true }) do |f| %>
   <%= devise_error_messages! %>
 
   <div class="form-group">
-    <%= f.label :email %><br />
+    <%= f.label :email, required: true %><br />
     <%= f.email_field :email, autofocus: true, class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :name %><br />
+    <%= f.label :name, required: true %><br />
     <%= f.text_field :name, class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :username %><br />
+    <%= f.label :username, required: true %><br />
     <%= f.text_field :username, class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :birthday %><br />
+    <%= f.label :birthday, required: true %><br />
     <%= f.date_select "birthday", prompt: {day: 'Select day', month: 'Select month', year: 'Select year'}, start_year: Date.today.year - 100, end_year: Date.today.year %>
   </div>
 
   <div class="form-group">
-    <%= f.label :gender %> <br>
+    <%= f.label :gender, required: true %> <br>
     <%= f.radio_button :gender, "male" %>
     <%= f.label :gender, "male" %>
     <%= f.radio_button :gender, "female" %>
@@ -32,7 +32,7 @@
   </div>
 
 
-  <%= f.label :interests %> <i>(please select at least 2)</i>
+  <%= f.label :interests, required: true %> <i>(please select at least 2)</i>
   <% interests.group_by(&:category).each_with_index do |(category, interests), index| %>
   <div class="panel-group" id="accordion<%= index %>" role="tablist" aria-multiselectable="true">
     <div class="panel panel-default">
@@ -73,7 +73,7 @@
 <% end %>
 
   <div class="form-group">
-    <%= f.label :password %>
+    <%= f.label :password, required: true %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
@@ -81,13 +81,17 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :password_confirmation, required: true %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
   </div>
   
   <div class="form-group">
     <%= f.label :image %>
     <%= f.file_field :image %>
+  </div>
+
+  <div>
+    <%= f.label "Select holidays below that are important to you. If your followers choose to tag you, they'll get reminders about your special days." %> <br>
   </div>
 
   <div class="actions">
