@@ -1,27 +1,18 @@
-<div class="container show">
-	<%= image_tag user.image.url(:thumb), class: "profile-image" %>
-	<h3><%= user.name %></h3>
-	<h3><%= user.username %></h3>
-
-	<div class="container show-center">
-		<%= link_to simple_format(user.wishlists.count.to_s + "\n Wishlists"), user %>
-		<%= link_to simple_format(user.gifts.count.to_s + "\n Gifts"), user %>
-		<%= link_to simple_format(user.followers.count.to_s + "\n Followers"), user %>
-		<%= link_to simple_format(user.following.count.to_s + "\n Following"), user %>
-	</div>
-
-	<% if user_signed_in? && current_user.id != user.id %>
-	<% if current_user.friends.include?(user) %>
-	<%=	link_to "Unfollow", relationship_path(current_user.relationships.find_by_friend_id(user)), method: :delete, class: "btn btn-primary" %>
-	<% else %>
-	<%= link_to "Follow", relationships_path(:friend_id => user), method: :post, class: "btn btn-primary" %>
-	<% end %>
-<% end %>
-</div>
-
-<hr>
+<%= render 'show' %>
 
 <div class="grid">
+<% if user_signed_in? && current_user.id == user.id %>
+		<%= link_to new_wishlist_path do %>
+		<div class="well add-new">
+			<div class="plus-sign">
+				<i class="glyphicon glyphicon-plus"></i>
+			</div>
+			<br>
+			Add A Wishlist
+		</div>
+		<% end %>
+	<% end %>
+
 	<% user.wishlists.each do |wishlist| %>
 		<div class="well">
 		<%= link_to image_tag(wishlist.gifts.first.image.url(:thumb)), wishlist %>

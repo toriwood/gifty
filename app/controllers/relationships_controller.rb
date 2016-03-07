@@ -2,7 +2,7 @@ class RelationshipsController < ApplicationController
   def create
   	@relationship = current_user.relationships.build(friend_id: params[:friend_id])
   	
-  	!current_user.following.include?(params[:friend_id]) ? current_user.following << params[:friend_id] : nil
+  	!current_user.following.include?(params[:friend_id]) ? current_user.following << params[:friend_id] : current_user.following
   	current_user.save
 
 		if @relationship.save

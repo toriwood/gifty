@@ -1,0 +1,34 @@
+<%= render 'show' %>
+
+<div class="grid">
+
+<% if user_signed_in? && current_user.id == user.id %>
+	<%= link_to new_gift_path do %>
+			<div class="well add-new">
+				<div class="plus-sign">
+					<i class="glyphicon glyphicon-plus"></i>
+				</div>
+				<br>
+				Add A Gift
+			</div>
+		<% end %>
+<% end %>
+
+<div class="clearfix"></div>
+
+	<% user.gifts.each do |gift| %>
+	<div class="well">
+		<div class="title">
+			<h3><%= link_to gift.name.titlecase, gift %></h3>
+			<%= link_to gift do %>
+				<% if gift.image_file_name.nil? %>
+					<%= image_tag gift.image_remote_url %>
+				<% else %>
+					<%= image_tag gift.image.url(:thumb) %>
+				<% end %>
+			<% end %>
+		</div>
+		<p><%= gift.description %></p>
+	</div>
+<% end %>
+</div>
