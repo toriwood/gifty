@@ -27,7 +27,7 @@
 	</div>
 
 	<div>
-		<%= f.label "Other Image Options" %> <br>
+		<%= f.label "Other Image Options (click below to change image)" %> <br>
 		<% @images.each do |image| %>
 		<%= link_to image_tag(image, class: 'preview'), {:controller => 'gifts', :action => 'update_image', method: :post, :image => image} %>
 		<% end %>
