@@ -1,9 +1,19 @@
 class User < ActiveRecord::Base
-	has_many :wishlists, dependent: :destroy
-	has_many :gifts, dependent: :destroy
-	
+  validates :username, presence: true, uniqueness: true
+
 	serialize :interests, Array
+  serialize :following, Array
 	
+  has_many :wishlists, dependent: :destroy
+  has_many :gifts, dependent: :destroy
+  
+  has_many :relationships
+  has_many :friends, through: :relationships
+
+  has_many :inverted_relationships, class_name: "Relationship", foreign_key: "friend_id"
+  has_many :followers, through: :inverted_relationships, source: :user
+
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
