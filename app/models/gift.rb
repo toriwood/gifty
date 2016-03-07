@@ -8,6 +8,7 @@ class Gift < ActiveRecord::Base
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   def image_remote_url=(url_value)
+    url_value = URI.encode(url_value)
     self.image = URI.parse(url_value)
     @image_remote_url = url_value
   end

@@ -49,19 +49,11 @@ class GiftsController < ApplicationController
     end
   end
 
-  # def manual_create
-  #   @gift = Gift.create(gift_params)
-
-  #   if @gift.save
-  #     flash[:success] = "The gift was successfully added to the #{@gift.wishlist.name} wishlist."
-  #     redirect_to gifts_path
-  #   else
-  #     @gift.errors.messages.each do |message|
-  #       flash[:error] = message[1][0]
-  #     end
-  # 		redirect_to new_gift_path
-  # 	end
-  # end
+  def update_image
+    @new_image = params[:image]
+    gift.update_attribute(:image_remote_url, @new_image)
+    redirect_to edit_gift_path(@gift)
+  end
 
   def update
   	@gift = Gift.update(params[:id], gift_params)
