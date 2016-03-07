@@ -11,7 +11,14 @@ class GiftsController < ApplicationController
     @interests = current_user.interests
   	@wishlists = Wishlist.all
     page = MetaInspector.new(gift.url)
-    @images = page.images.take(10)
+    images = page.images.with_size.take(5)
+    @images = []
+
+    images.each do |image|
+      @images << image[0]
+    end
+    
+    @images << page.images.best
   end
 
   def new
