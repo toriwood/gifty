@@ -8,6 +8,21 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @interests = Interest.all
   end
 
+  def create
+    super do 
+      @user.special_days[:birthday] = @user.birthday
+      @user.save
+    end
+  end
+
+  def update
+    super do 
+      @user.special_days[:birthday] = @user.birthday
+      @user.save
+    end
+  end
+
+
   protected
 
 

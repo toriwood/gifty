@@ -31,6 +31,7 @@
 		<div class="pull-left">
 			<h6><%= link_to gift.wishlist.name, gift.wishlist %></h6> 
 			<h6><%= link_to "by #{gift.user.username}", gift.user %></h6>
+			<h6><%= gift.user.special_days %></h6>
 		</div>
 
 			<% if user_signed_in? && current_user.id == gift.user_id %>

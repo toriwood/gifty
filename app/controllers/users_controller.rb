@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @special_days = user.special_days
   end
 
   private
