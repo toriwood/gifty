@@ -13,6 +13,6 @@ Rails.application.routes.draw do
   resources :users
   resources :relationships
 
-  root 'wishlists#index'
+  root 'gifts#index'
 
 end
