@@ -200,6 +200,7 @@ a {
 
 a:hover, a:focus {
 	color: #B6212D;
+	text-decoration: none;
 }
 
 img {
@@ -238,4 +239,18 @@ hr {
 img.preview {
 	max-height: 200px;
 	max-width: 200px;
+}
+
+label {
+	color: #B6212D;
+	font-size: 1.2em;
+}
+
+div.panel-heading.custom {
+	color: #B6212D;
+	background-color: #21B6A8;
+}
+
+div.panel-body.custom {
+	background-color: #DEF3FA;
 }

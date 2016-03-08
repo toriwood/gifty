@@ -32,34 +32,34 @@
   </div>
 
 
-  <%= f.label :interests, required: true %> <i>(please select at least 2)</i>
+  <%= f.label :interests, required: true %> <i>(Click the categories to expand them. Please select at least 2.)</i>
   <% interests.group_by(&:category).each_with_index do |(category, interests), index| %>
   <div class="panel-group" id="accordion<%= index %>" role="tablist" aria-multiselectable="true">
     <div class="panel panel-default">
-      <div class="panel-heading" role="tab" id="heading<%= index %>">
+      <div class="panel-heading custom" role="tab" id="heading<%= index %>">
         <h4 class="panel-title">
           <a role="button" data-toggle="collapse" data-parent="#accordion<%= index %>" href="#collapse<%= index %>" aria-expanded="true" aria-controls="collapse<%= index %>">
-           <%= category %>
+           <strong><%= category %></strong>
           </a>
         </h4>
       </div>
       <div id="collapse<%= index %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<%= index %>">
-        <div class="panel-body">
+        <div class="panel-body custom">
         <% interests.group_by(&:subcategory).each do |subcategory, interests| %>
            <div class="panel-group" id="accordion-<%= subcategory.gsub(' ','-') %>">
             <div class="panel panel-default">
-              <div class="panel-heading" id="heading-<%= subcategory.gsub(' ','-') %>">
+              <div class="panel-heading custom" id="heading-<%= subcategory.gsub(' ','-') %>">
                 <h4 class="panel-title">
                   <a role="button" data-toggle="collapse" data-parent="#accordion-<%= subcategory.gsub(' ','-') %>" href="#collapse-<%= subcategory.gsub(' ','-') %>" aria-expanded="true" aria-controls="collapse-<%= subcategory.gsub(' ','-') %>">
-                   <%= subcategory %>
+                   <strong><%= subcategory %></strong>
                   </a>
                 </h4>
               </div>
               <div id="collapse-<%= subcategory.gsub(' ','-') %>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-<%= subcategory.gsub(' ','-') %>">
-                <div class="panel-body">
+                <div class="panel-body custom">
                   <% interests.each do |interest| %>
                   <%= f.check_box :interests, {multiple: true}, interest.name, nil %>
-                  <%= f.label interest.name %> <br>
+                  <%= f.label interest.name, interest.name %> <br>
                   <% end %>
                 </div>
               </div>
@@ -84,14 +84,23 @@
     <%= f.label :password_confirmation, required: true %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
   </div>
+
+  <h3>Optional Fields</h3>
   
   <div class="form-group">
     <%= f.label :image %>
     <%= f.file_field :image %>
   </div>
 
+  <br>
+
   <div>
-    <%= f.label "Select holidays below that are important to you. If your followers choose to tag you, they'll get reminders about your special days." %> <br>
+    <h4>Select holidays below that are important to you.</h4>
+     <p>If your followers choose to tag you, they'll get reminders about your special days. We automatically include your birthday.</p>
+    <% holidays.each do |holiday| %><br>
+    <%= f.check_box :special_days, {multiple: true}, "#{holiday[:name]}:#{holiday[:date]}", nil %>
+    <%= f.label holiday[:name], holiday[:name] %>
+    <% end %>
   </div>
 
   <div class="actions">
