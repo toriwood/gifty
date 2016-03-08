@@ -3,7 +3,12 @@ class GiftsController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
   
   def index
-  	@gifts = Gift.all
+  	if params[:search]
+      @gifts = Gift.search(params[:search]).order("created_at DESC")
+    else
+      @gifts = Gift.all.order('created_at DESC')
+    end
+    
     @interests = Interest.all
   end
 

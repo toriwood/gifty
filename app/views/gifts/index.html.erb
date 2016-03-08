@@ -1,6 +1,7 @@
 <div class="grid">
 
-	<%= link_to new_gift_path do %>
+	<% if params[:search].nil? || params[:search].empty? %>
+		<%= link_to new_gift_path do %>
 			<div class="well add-new">
 				<div class="plus-sign">
 					<i class="glyphicon glyphicon-plus"></i>
@@ -9,7 +10,11 @@
 				Add A Gift
 			</div>
 		<% end %>
+	<% end %>
 
+	<div class="clearfix"></div>
+
+	<% if @gifts.present? %>
 	<% @gifts.each do |gift| %>
 	<div class="well">
 		<div class="title">
@@ -40,4 +45,8 @@
 			<% end %>
 	</div>
 <% end %>
+
 </div>
+<% else %>
+	<h3 class="pull-left">There are no results for the term <strong><%= params[:search] %></strong>.</h3>
+<% end %>

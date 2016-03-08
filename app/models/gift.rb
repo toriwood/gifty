@@ -14,4 +14,8 @@ class Gift < ActiveRecord::Base
     @image_remote_url = url_value
   end
 
+  def self.search(search)
+    where("LOWER(name) LIKE :search OR LOWER(description) LIKE :search", search: "%#{search.downcase}%")
+  end
+
 end
