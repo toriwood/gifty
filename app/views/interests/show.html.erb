@@ -1,5 +1,6 @@
 <h1><strong><%= interest.name %></strong></h1>
 
+
 <div class="grid">
 	<% @gifts.each do |gift| %>
 		<% if gift.user.interests.include?(interest.name) %>
@@ -16,6 +17,8 @@
 			</div>
 		<p><%= gift.description %></p>
 			
+<div class="clearfix"></div>
+
 		<hr>
 
 		<h6><%= link_to image_tag(gift.user.image.url(:thumb), class: "show-image"), gift.user, class: "pull-left" %></h6>

@@ -25,6 +25,10 @@ div.container {
 	margin: 0 auto;
 }
 
+.navbar-header {
+	height: 65px;
+}
+
 .well {
 	text-align: center;
 	margin: 5px;
@@ -94,7 +98,7 @@ div {
 }
 
 .container .show-center {
-	width: 400px;
+	width: 90%;
 	margin: 0 auto;
 	text-align: center;
 }
