@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 
 	serialize :interests, Array
   serialize :following, Array
+  serialize :celebrating, Array
   serialize :special_days, Hash
 	
   has_many :wishlists, dependent: :destroy

@@ -13,17 +13,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def holidays
     @holidays = Holidays.between(Date.new(Time.now.year, 1, 1), Date.new(Time.now.year, 12, 31), :us, :informal)
   end
-
+  
   def create
     super do
     if !params[:user][:special_days].nil?
       params[:user][:special_days].each do |day|
         day = day.split(":")
-        @user.special_days[day[0].parameterize.underscore.to_sym] = day[1].to_date
+        @user.special_days[day[0].to_s] = day[1].to_date
       end
     end
 
-      @user.special_days[:birthday] = @user.birthday
+      @user.special_days["Birthday"] = @user.birthday
       @user.save
     end
   end
@@ -31,13 +31,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def update
     super do
     if !params[:user][:special_days].nil?
+      @user.special_days.clear
       params[:user][:special_days].each do |day|
         day = day.split(":")
-        @user.special_days[day[0].parameterize.underscore.to_sym] = day[1].to_date
+        @user.special_days[day[0].to_s] = day[1].to_date
       end
     end
 
-      @user.special_days[:birthday] = @user.birthday
+      @user.special_days["Birthday"] = @user.birthday
       @user.save
     end
   end
@@ -48,11 +49,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) do |u|
       u.permit(:image, :age, :gender, :name, :username, :birthday,
-        :email, :password, :password_confirmation, {:interests => []}, :following, :special_days)
+        :email, :password, :password_confirmation, {:interests => []},
+        :following, :special_days, :celebrating)
     end
     devise_parameter_sanitizer.for(:account_update) do |u|
       u.permit(:image, :age, :gender, :name, :username, :birthday,
-        :email, :password, :password_confirmation, :current_password, {:interests => []}, :following, :special_days)
+        :email, :password, :password_confirmation, :current_password, 
+        {:interests => []}, :following, :special_days, :celebrating)
     end
   end
 end

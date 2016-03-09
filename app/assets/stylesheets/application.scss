@@ -90,7 +90,11 @@ only screen and (max-device-width : 599px){
 }
 
 div {
-	font-family: 'Oxygen', Helvetica, Arial, sans-serif;
+	font-family: 'Josefin Sans', Helvetica, Arial, sans-serif;
+}
+
+p, a {
+	font-size: 1.1em;
 }
 
 .container .show {
