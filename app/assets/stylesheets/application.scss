@@ -179,6 +179,27 @@ p, a {
 	margin: 5px;
 }
 
+.btn-danger {
+	background-color: #B6212D;
+	border: 1px solid #B6212D;
+	color: #21B6A8;
+	margin: 5px;
+}
+
+.btn-danger:hover {
+	background-color: #B6212D;
+	border: 1px solid #B6212D;
+	color: white;
+	margin: 5px;
+}
+
+.btn-danger:focus {
+	background-color: #B6212D;
+	border: 1px solid #B6212D;
+	color: white;
+	margin: 5px;
+}
+
 h1, h2, h3, h4, h5, h6 {
 	color: #B6212D;
 	margin-top: 5px;
