@@ -10,6 +10,8 @@
 			</div>
 		<% end %>
 
+		<div class="clearfix"></div>
+
 	<% @gifts.each do |gift| %>
 	<% if user_signed_in? && (current_user.following.include?(gift.user_id.to_s)|| gift.user_id == current_user.id) %>
 	<div class="well">

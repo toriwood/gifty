@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
 					date = Date.new(Date.today.year + 1, day.mon, day.mday)
 				end
 
-				if date.between?(Date.today, Date.today + 1.week)
+				if date.between?(Date.today, Date.today + 2.week)
 					number_of_days = (date - Date.today).to_i
 					day = date.strftime("%a, %b #{date.day.ordinalize}")
 				day_array << number_of_days

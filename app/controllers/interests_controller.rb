@@ -1,6 +1,6 @@
 class InterestsController < ApplicationController
   def index
-  	@interests = Interest.pluck(:category, :subcategory, :name)
+  	@interests = Interest.order('category ASC').order('subcategory ASC').order('name ASC')
   end
 
   def show

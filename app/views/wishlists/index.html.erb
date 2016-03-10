@@ -1,5 +1,6 @@
 <div class="grid">
 
+	<% if user_signed_in? %>
 	<%= link_to new_wishlist_path do %>
 			<div class="well add-new">
 				<div class="plus-sign">
@@ -9,6 +10,7 @@
 				Add A Wishlist
 			</div>
 		<% end %>
+	<% end %>
 
 	<% @wishlists.each do |wishlist| %>
 	<div class="well">
