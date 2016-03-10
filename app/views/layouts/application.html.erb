@@ -45,14 +45,18 @@
            <span id="notification_count"><%= notifications.count %></span>
           <% end %>
 
-            <div id="notificationContainer">
+            <div id="notificationContainer" style="margin-top: 30px;">
               <div class="notificationTitle">Notifications</div>
               <% notifications.each do |n| %>
                 <% if n[1][0] >= 1 %>
-                <div class="notificationBody notifications"><%= "#{User.find(n[0].to_i).username.titlecase} will be celebrating soon! They'll be celebrating #{n[1][1].keys.first} in #{n[1][0]} days on #{n[1][1].values.first}."%></div>
+                <div class="notificationBody notifications">
+                  <% user = User.find(n[0].to_i) %>
+                  <%= link_to image_tag(user.image.url(:thumb), class: "show-image"), user, class: "pull-left", target: "_blank" %>
+                  <%= "#{user.username.titlecase} will be celebrating soon! They'll be celebrating #{n[1][1].keys.first} in #{n[1][0]} days on #{n[1][1].values.first}."%></div>
                 <% elsif n[1][0] < 1 %>
-                <div class="notificationsBody notifications"><%= "#{User.find(n[0]).username} is celebrating today! They're celebrating #{n[1][1].keys.first}!" %></div>
+                <div class="notificationsBody notifications"><%= "#{user.username} is celebrating today! They're celebrating #{n[1][1].keys.first}!" %></div>
                 <% end %>
+                <hr>
                 <% end %>
               <div id="notificationFooter"><a href="#">See All</a></div>
             </div>

@@ -289,52 +289,50 @@ div.panel-body.custom {
 /*for notifications*/
 #notification_li
 {
-position:relative
+	position: relative;
 }
 #notificationContainer 
 {
-background-color: #fff;
-border: 1px solid rgba(100, 100, 100, .4);
--webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
-overflow: visible;
-position: absolute;
-top: 30px;
-margin-left: -170px;
-width: 400px;
-z-index: 1;
-display: none; // Enable this after jquery implementation 
+	background-color: #fff;
+	border: 1px solid #21B6A8;
+	-webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+	overflow: visible;
+	position: absolute;
+	top: 30px;
+	margin-left: -170px;
+	min-width: 350px;
+	z-index: 1;
+	display: none;
+	padding: 5px;
 }
 // Popup Arrow
 #notificationContainer:before {
-content: '';
-display: block;
-position: absolute;
-width: 0;
-height: 0;
-color: transparent;
-border: 10px solid black;
-border-color: transparent transparent white;
-margin-top: -20px;
-margin-left: 188px;
+	content: '';
+	display: block;
+	position: absolute;
+	width: 0;
+	height: 0;
+	color: transparent;
+	border: 10px solid black;
+	border-color: transparent transparent white;
+	margin-top: -20px;
+	margin-left: 188px;
 }
-#notificationTitle
-{
-font-weight: bold;
-padding: 8px;
-font-size: 13px;
-background-color: #ffffff;
-position: fixed;
-z-index: 1000;
-width: 384px;
-border-bottom: 1px solid #dddddd;
+#notificationTitle {
+	font-weight: bold;
+	text-align: center;
+	padding: 8px;
+	font-size: 13px;
+	background-color: #ffffff;
+	position: fixed;
+	z-index: 1000;
+	width: 384px;
+	border-bottom: 1px solid #dddddd;
 }
-#notificationsBody
-{
-padding: 33px 0px 0px 0px !important;
-min-height:300px;
+#notificationsBody {
+	min-height:300px;
 }
-#notificationFooter
-{
+#notificationFooter {
 background-color: #e9eaed;
 text-align: center;
 font-weight: bold;
@@ -344,8 +342,7 @@ border-top: 1px solid #dddddd;
 }
 
 
-#notification_count 
-{
+#notification_count {
 padding-top: 4px;
 padding-left: 6px;
 margin-top: -50px;
