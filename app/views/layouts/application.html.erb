@@ -38,6 +38,27 @@
 
         <ul class="nav navbar-nav navbar-right">
         
+        <% if user_signed_in? %>
+        <li id="notification_li">
+          <a href="#" id="notificationLink" style="margin-top:5px;"><%= image_tag("people.png") %></a>
+          <% if notifications.count > 0 %>
+           <span id="notification_count"><%= notifications.count %></span>
+          <% end %>
+
+            <div id="notificationContainer">
+              <div class="notificationTitle">Notifications</div>
+              <% notifications.each do |n| %>
+                <% if n[1][0] >= 1 %>
+                <div class="notificationBody notifications"><%= "#{User.find(n[0].to_i).username.titlecase} will be celebrating soon! They'll be celebrating #{n[1][1].keys.first} in #{n[1][0]} days on #{n[1][1].values.first}."%></div>
+                <% elsif n[1][0] < 1 %>
+                <div class="notificationsBody notifications"><%= "#{User.find(n[0]).username} is celebrating today! They're celebrating #{n[1][1].keys.first}!" %></div>
+                <% end %>
+                <% end %>
+              <div id="notificationFooter"><a href="#">See All</a></div>
+            </div>
+        </li>
+        <% end %>
+
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" style="margin-top: 5px;"data-toggle="dropdown">Browse <b class="caret"></b></a>
             <ul class="dropdown-menu">

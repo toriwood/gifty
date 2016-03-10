@@ -11,8 +11,8 @@ class ApplicationController < ActionController::Base
 		users = current_user.celebrating
 
 		users.each do |user|
-			day_array = []
 			User.find(user.to_i).special_days.each do |holiday, day|
+			day_array = []
 				if Date.new(Date.today.year, day.mon, day.mday) > Date.today
 					date = Date.new(Date.today.year, day.mon, day.mday)
 				else
@@ -21,6 +21,7 @@ class ApplicationController < ActionController::Base
 
 				if date.between?(Date.today, Date.today + 1.week)
 					number_of_days = (date - Date.today).to_i
+					day = date.strftime("%a, %b #{date.day.ordinalize}")
 				day_array << number_of_days
 				day_array << {holiday => day}	
 				@notifications << [user, day_array]
@@ -28,8 +29,8 @@ class ApplicationController < ActionController::Base
 			end
 		end
 
-		@notifications
-
+		@notifications.sort_by { |n| n[1][1].values.first }
+			
 	end
 
   # Prevent CSRF attacks by raising an exception.

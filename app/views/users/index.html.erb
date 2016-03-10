@@ -1,15 +1,3 @@
-<div class="notifications jumbotron">
-	<% notifications.each do |n| %>
-		<% if n[1][0] > 1 %>
-		<%= "#{User.find(n[0].to_i).username.titlecase} will be celebrating soon! They'll be celebrating #{n[1][1].keys.first} in #{n[1][0]} days on #{n[1][1].values.first}."%>
-		<% elsif n[1][0] <= 1 %>
-		<%= "#{User.find(n[0]).username} is celebrating today! They're celebrating #{n[1][1].keys.first}!" %>
-		<% end %> <br>
-	<% end %>
-</div>
-
-
-
 <div class="grid">
 
 	<%= link_to new_gift_path do %>

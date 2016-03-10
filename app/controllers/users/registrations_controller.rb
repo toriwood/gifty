@@ -7,7 +7,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   helper_method :holidays
 
   def interests
-    @interests = Interest.all
+    @interests = Interest.order('category ASC').order('subcategory ASC').order('name ASC')
   end
 
   def holidays

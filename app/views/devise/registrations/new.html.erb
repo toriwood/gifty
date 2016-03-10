@@ -48,76 +48,77 @@
   <h4>You don't have to fill these out, but it will help make Gifted better for all users, including you! You can always access these again by editing your account.</h4>
 
    <div class="form-group">
-    <%= f.label :image, "Upload a picture of yourself!" %>
+    <%= f.label :image, "Upload a picture of yourself:" %>
     <%= f.file_field :image %>
   </div>
 
   <br>
 
-  <div class="panel-group" id="accordion-top" role="tablist" aria-multiselectable="true">
-    <div class="panel panel-default">
-      <div class="panel-heading custom" role="tab" id="heading-top">
-        <h4 class="panel-title">
-          <a role="button" data-toggle="collapse" data-parent="#accordion-top" href="#collapse-top" aria-expanded="true" aria-controls="collapse-top">
-            <strong>Add Interests</strong>
-          </a>
-        </h4>
-      </div>
-      <div id="collapse-top" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-top">
+<div class="panel-group" id="accordion-top" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading custom" role="tab" id="heading-top">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion-top" href="#collapse-top" aria-expanded="true" aria-controls="collapse-top">
+          <span class="glyphicon glyphicon-plus"></span>
+          <strong>Add Interests (Please select at least 2)</strong>
+        </a>
+      </h4>
+    </div>
+    <div id="collapse-top" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-top">
         <div class="panel-body custom">
-  <%= f.label :interests%> <i>(Click the categories to expand them. Please select at least 2.)</i>
-  <% interests.group_by(&:category).each_with_index do |(category, interests), index| %>
-  <div class="panel-group" id="accordion<%= index %>" role="tablist" aria-multiselectable="true">
-    <div class="panel panel-default">
-      <div class="panel-heading custom" role="tab" id="heading<%= index %>">
-        <h4 class="panel-title">
-          <a role="button" data-toggle="collapse" data-parent="#accordion<%= index %>" href="#collapse<%= index %>" aria-expanded="true" aria-controls="collapse<%= index %>">
-           <strong><%= category %></strong>
-          </a>
-        </h4>
-      </div>
-      <div id="collapse<%= index %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<%= index %>">
-        <div class="panel-body custom">
-        <% interests.group_by(&:subcategory).each do |subcategory, interests| %>
-           <div class="panel-group" id="accordion-<%= subcategory.gsub(' ','-') %>">
-            <div class="panel panel-default">
-              <div class="panel-heading custom" id="heading-<%= subcategory.gsub(' ','-') %>">
-                <h4 class="panel-title">
-                  <a role="button" data-toggle="collapse" data-parent="#accordion-<%= subcategory.gsub(' ','-') %>" href="#collapse-<%= subcategory.gsub(' ','-') %>" aria-expanded="true" aria-controls="collapse-<%= subcategory.gsub(' ','-') %>">
-                   <strong><%= subcategory %></strong>
-                  </a>
-                </h4>
-              </div>
-              <div id="collapse-<%= subcategory.gsub(' ','-') %>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-<%= subcategory.gsub(' ','-') %>">
-                <div class="panel-body custom">
-                  <% interests.each do |interest| %>
-                  <%= f.check_box :interests, {multiple: true}, interest.name, nil %>
-                  <%= f.label interest.name, interest.name %> <br>
-                  <% end %>
+        <% interests.group_by(&:category).each_with_index do |(category, interests), index| %>
+        <div class="panel-group" id="accordion<%= index %>" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+            <div class="panel-heading custom" role="tab" id="heading<%= index %>">
+              <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" data-parent="#accordion<%= index %>" href="#collapse<%= index %>" aria-expanded="true" aria-controls="collapse<%= index %>">
+                 <span class="glyphicon glyphicon-plus"></span>
+                 <strong><%= category %></strong>
+                </a>
+              </h4>
+            </div>
+            <div id="collapse<%= index %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<%= index %>">
+              <div class="panel-body custom">
+              <% interests.group_by(&:subcategory).each do |subcategory, interests| %>
+                 <div class="panel-group" id="accordion-<%= subcategory.gsub(' ','-') %>">
+                  <div class="panel panel-default">
+                    <div class="panel-heading custom" id="heading-<%= subcategory.gsub(' ','-') %>">
+                      <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion-<%= subcategory.gsub(' ','-') %>" href="#collapse-<%= subcategory.gsub(' ','-') %>" aria-expanded="true" aria-controls="collapse-<%= subcategory.gsub(' ','-') %>">
+                         <span class="glyphicon glyphicon-plus"></span>
+                         <strong><%= subcategory %></strong>
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapse-<%= subcategory.gsub(' ','-') %>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-<%= subcategory.gsub(' ','-') %>">
+                      <div class="panel-body custom">
+                        <% interests.each do |interest| %>
+                        <%= f.check_box :interests, {multiple: true}, interest.name, nil %>
+                        <%= f.label interest.name, interest.name %> <br>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+              <% end %>
               </div>
             </div>
           </div>
-        <% end %>
         </div>
-      </div>
+      <% end %>
     </div>
   </div>
-<% end %>
-</div>
-</div>
+  </div>
 </div>
 
-<br>
-
-  <div>
     <h4>Select holidays below that are important to you.</h4>
      <p>If your followers choose to tag you, they'll get reminders about your special days. We automatically include your birthday.</p>
-    <% holidays.each do |holiday| %><br>
-    <%= f.check_box :special_days, {multiple: true}, "#{holiday[:name]}:#{holiday[:date]}", nil %>
-    <%= f.label holiday[:name], holiday[:name] %>
-    <% end %>
-  </div>
+      <div class="grid">
+        <% holidays.each do |holiday| %>
+        <%= f.check_box :special_days, {multiple: true}, "#{holiday[:name]}:#{holiday[:date]}", nil %>
+        <%= f.label holiday[:name], holiday[:name] %><br>
+        <% end %>
+      </div>
 
   <div>
     <h4>Add your own special occasions:</h4>

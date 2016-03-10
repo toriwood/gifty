@@ -1,6 +1,6 @@
 class InterestsController < ApplicationController
   def index
-  	@interests = Interest.all
+  	@interests = Interest.pluck(:category, :subcategory, :name)
   end
 
   def show
