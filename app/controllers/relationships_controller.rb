@@ -6,6 +6,7 @@ class RelationshipsController < ApplicationController
 	  	!current_user.following.include?(params[:friend_id]) ? current_user.following << params[:friend_id] : current_user.following
 	  	current_user.save
 	  elsif params[:category] == "celebrate"
+
 	  	!current_user.celebrating.include?(params[:friend_id]) ? current_user.celebrating << params[:friend_id] : current_user.celebrating
 	  	current_user.save
 	  end
@@ -14,7 +15,7 @@ class RelationshipsController < ApplicationController
 			if params[:category] == "follow"
 				flash[:info] = "Followed Successfully."
 			else
-				flash[:info] = "Tagged Successfully."
+				flash[:info] = "You're celebrating with #{User.find(params[:friend_id]).username} now! You'll receive status updates when they have a favorite holiday or special occasion coming up."
 			end
 			redirect_to user_path(params[:friend_id])
 		else
@@ -30,25 +31,32 @@ class RelationshipsController < ApplicationController
 
 			index = current_user.following.index(params[:friend_id].to_s)
 			current_user.following.delete_at(index)
-			current_user.save
-		flash[:info] = "Successfully unfollowed."
 
-		@relationships.each do |r|
+			@relationships.each do |r|
 				r.destroy
 			end
-		else
-		@relationship = Relationship.where(friend_id: params[:friend_id], user_id: params[:user_id], category: params[:category])
-		friend_id = params[:friend_id]
-		
-		@relationship.destroy(@relationship)
-		flash[:info] = "You're no longer celebrating with #{User.find(friend_id).username}"
-		end
 
-		if current_user.celebrating.include?(friend_id.to_s)
-			index = current_user.celebrating.index(friend_id.to_s)
+			if current_user.celebrating.include?(params[:friend_id].to_s)
+			index = current_user.celebrating.index(params[:friend_id].to_s)
 			current_user.celebrating.delete_at(index)
 			current_user.save
 		end
+
+			current_user.save
+		flash[:info] = "Successfully unfollowed."
+
+		else
+		@relationship = Relationship.where(friend_id: params[:friend_id], user_id: params[:user_id], category: params[:category])
+		friend_id = params[:friend_id]
+
+		@relationship.destroy(@relationship)
+		index = current_user.celebrating.index(params[:friend_id].to_s)
+		current_user.celebrating.delete_at(index)
+		current_user.save
+		flash[:info] = "Bummer. You're no longer celebrating with #{User.find(friend_id).username}."
+		end
+
+		
 
 		redirect_to root_path		
 	end
