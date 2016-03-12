@@ -1,29 +1,17 @@
 <div class="grid">
 
-	<% if user_signed_in? %>
-	  <li id="notification_li">
-	    <a href="#" id="notificationLink" style="margin-top:5px;"><%= image_tag("people.png") %></a>
-	    <% if notifications.count > 0 %>
-	     <span id="notification_count"><%= notifications.count %></span>
-	    <% end %>
+	<% notifications.inspect %>
 
-	      <div id="notificationContainer" style="margin-top: 30px;">
-	        <div class="notificationTitle">Notifications</div>
-	        <% notifications.each do |n| %>
-	          <% if n[1][0] >= 1 %>
-	          <div class="notificationBody notifications">
-	            <% user = User.find(n[0].to_i) %>
-	            <%= link_to image_tag(user.image.url(:thumb), class: "show-image"), user, class: "pull-left", target: "_blank" %>
-	            <%= "#{user.username.titlecase} will be celebrating soon! They'll be celebrating #{n[1][1].keys.first} in #{n[1][0]} days on #{n[1][1].values.first}."%></div>
-	          <% elsif n[1][0] < 1 %>
-	          <div class="notificationsBody notifications"><%= "#{user.username} is celebrating #{n[1][1].keys.first} today!" %></div>
-	          <% end %>
-	          <hr>
-	          <% end %>
-	        <div id="notificationFooter"><a href="#">See All</a></div>
-	      </div>
-	  </li>
-
+	<% if user_signed_in? && notifications.count > 0 %>
+	<div class="jumbotron">
+    <%= image_tag("people.png", width: "150px", height: "150px", class: "pull-left", style: "margin-right: 40px;") %>
+      <div>
+        <h2>Some of your friends are celebrating!</h2>
+				<% notifications.each do |n| %>
+					<p><%= n %></p>
+				<% end %>
+  		</div>
+  </div>
 
 	<%= link_to new_gift_path do %>
 			<div class="well add-new">
