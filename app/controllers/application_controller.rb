@@ -35,6 +35,7 @@ class ApplicationController < ActionController::Base
 		end
 
 		events = events.group_by { |e| e[:holiday] }
+
 		events.each do |k, v|
 			usernames = []
 			v.each do |vi|

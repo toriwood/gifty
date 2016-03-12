@@ -5,7 +5,7 @@
 	<% if user_signed_in? && notifications.count > 0 %>
 	<div class="jumbotron">
     <%= image_tag("people.png", width: "150px", height: "150px", class: "pull-left", style: "margin-right: 40px;") %>
-      <div>
+      <div class="container celebrating">
         <h2><%= current_user.name %>, some of your friends are celebrating!</h2>
 				<% notifications.each do |n| %>
 					<p><%= n %></p>
