@@ -1,6 +1,6 @@
 <h1>People interested in <%= interest.name %> were also interested in these gifts:</h1>
 
-
+<div class="container">
 <div class="grid">
 	<% @gifts.each do |gift| %>
 		<% if gift.user.interests.include?(interest.name) %>
@@ -39,4 +39,5 @@
 
 		<% end %>
 	<% end %>
+</div>
 </div>

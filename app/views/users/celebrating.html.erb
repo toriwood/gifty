@@ -1,0 +1,11 @@
+
+<%= render 'show' %>
+
+<div class="grid">
+		<% user.celebrating.uniq.each do |celebrating| %>
+			<div class="well">
+			<strong><h4><%= link_to User.find(celebrating).username, user_path(id: celebrating) %></h4></strong>
+			<%= link_to image_tag(User.find(celebrating).image.url(:thumb), class: "profile-image"), user_path(id: celebrating) %>
+			</div>
+		<% end %>
+</div>

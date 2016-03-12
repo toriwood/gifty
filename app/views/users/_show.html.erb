@@ -8,6 +8,9 @@
 		<%= link_to simple_format(user.gifts.count.to_s + "\n Gifts"), user_gifts_path(user) %>
 		<%= link_to simple_format(user.followers.uniq.count.to_s + "\n Followers"), user_followers_path(user) %>
 		<%= link_to simple_format(user.following.uniq.count.to_s + "\n Following"), user_following_path(user) %>
+		<% if user_signed_in? && current_user.id == user.id %>
+			<%= link_to simple_format(user.celebrating.uniq.count.to_s + "\n Celebrating"), user_celebrating_path(user) %>
+		<% end %>
 	</div>
 
 	<% if user_signed_in? && current_user.id != user.id %>

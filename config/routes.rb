@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get 'users/:id/gifts' => 'users#gifts', as: "user_gifts"
   get 'users/:id/followers' => 'users#followers', as: "user_followers"
   get 'user/:id/following' => 'users#following', as: "user_following"
-
+  get 'user/:id/celebrating' => 'users#celebrating', as: "user_celebrating"
 
   get '/interests' => 'interests#index'
   get '/interests/:id' => 'interests#show', as: "interest"
