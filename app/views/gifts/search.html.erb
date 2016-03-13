@@ -4,7 +4,7 @@
 	<%= search_form_for @q, url: search_gifts_path, html: { method: :post } do |f| %>
 		
 	<div class="form-group">
-		<%= f.label :user_gender, "Interests:", class: "form-label" %>
+		<%= f.label :user_gender, "Gender:", class: "form-label" %>
 		<%= f.select :user_gender_eq, [["Male", "male"],["Female", "female"]], class: "form-control form-inline", prompt: "Select a gender" %>
 	</div>
 	

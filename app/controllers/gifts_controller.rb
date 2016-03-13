@@ -48,7 +48,8 @@ class GiftsController < ApplicationController
   end
 
   def new
-  	@wishlists = current_user.wishlists
+    @gift = Gift.new(url: params[:url])
+    @wishlists = current_user.wishlists
 
     if @wishlists.empty?
       redirect_to new_wishlist_path
@@ -56,7 +57,6 @@ class GiftsController < ApplicationController
     end
 
     @interests = current_user.interests
-    @gift = Gift.new
   end
 
   def show
