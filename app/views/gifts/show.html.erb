@@ -9,6 +9,7 @@
 		<% end %>
 	<p><%= gift.description %></p>
 	<%= link_to "Visit Site", gift.url, target: "blank", class: "btn btn-primary" %>
+	<%= link_to "Regift It", new_gift_path(url: gift.url), target: "blank", class: "btn btn-primary" %>
 
 	<hr>
 

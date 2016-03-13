@@ -1,24 +1,17 @@
-<h1>People with wishlists related to <%= interest.name %> saved these gifts:</h1>
-
-<div class="container">
-<div class="grid">
-	<% @wishlists.each do |wishlist| %>
-		<% if wishlist.interest == interest.name %>
-		<% wishlist.gifts.each do |gift| %>
-		<div class="well">
-			<div class="title">
-				<h3><%= link_to gift.name.titlecase, gift %></h3>
-				<%= link_to gift do %>
-					<% if gift.image_file_name.nil? %>
-						<%= image_tag gift.image_remote_url %>
-					<% else %>
-						<%= image_tag gift.image.url(:thumb) %>
-					<% end %>
+<% @gifts.each do |gift| %>
+	<div class="well">
+		<div class="title">
+			<h3><%= link_to gift.name.titlecase, gift %></h3>
+			<%= link_to gift do %>
+				<% if gift.image_file_name.nil? %>
+					<%= image_tag gift.image_remote_url %>
+				<% else %>
+					<%= image_tag gift.image.url(:thumb) %>
 				<% end %>
-			</div>
+			<% end %>
+		</div>
 		<p><%= gift.description %></p>
-			
-<div class="clearfix"></div>
+		<%= link_to "Regift It", new_gift_path(url: gift.url), class: "btn btn-primary" %>
 
 		<hr>
 
@@ -35,11 +28,8 @@
 				<%= link_to "Delete", gift_path(id: gift.id), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
 			<% end %>
 	</div>
-<div class="clearfix"></div>
-
-
-		<% end %>
-	<% end %>
+	<div class="clearfix"></div>
+	
 <% end %>
-</div>
+
 </div>
