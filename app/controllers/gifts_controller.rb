@@ -5,12 +5,9 @@ class GiftsController < ApplicationController
 
   def search
     @q = Gift.ransack(params[:q])
-    @gifts = @q.result.includes(:user, :wishlist)
+    @gifts = @q.result.includes(:user, :wishlist, :interest)
 
-    @interests = []
-    Interest.all.each do |interest|
-      @interests << interest.name
-    end
+    @interests = Interest.all
 
     @holidays = [] 
     days = Holidays.between(Date.new(Time.now.year, 1, 1), Date.new(Time.now.year, 12, 31), :us, :informal)
@@ -45,6 +42,13 @@ class GiftsController < ApplicationController
     end
     
     @images << page.images.best
+
+    @interests = []
+
+      current_user.interests.each do |i|
+        interest = Interest.find_by_name(i)
+        @interests << interest
+      end
   end
 
   def new
@@ -121,7 +125,7 @@ class GiftsController < ApplicationController
   helper_method :gift
 
   def gift_params
-  	params.require(:gift).permit(:id, :name, :wishlist_id, :url, :description, :image, :user_id)  	
+  	params.require(:gift).permit(:id, :name, :wishlist_id, :url, :description, :image, :user_id, :interest_id)  	
   end
 
 end

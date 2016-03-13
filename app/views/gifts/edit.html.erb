@@ -35,8 +35,15 @@
 	
 <br>
 
+<% if !current_user.interests.nil? %>
 	<div class="form-group">
-		<%= f.label :wishlist_id %>
+		<%= f.label :interest_id, "Does this gift relate to any of your interests? (If not, we'll assign it to the random category.)" %> <br>
+		<%= f.collection_select :interest_id, @interests, :id, :name, include_blank: true, class: "form-control", prompt: "Select an interest"%>
+	</div>
+<% end %>
+
+	<div class="form-group"> 
+		<%= f.label :wishlist_id %> <br>
 		<%= f.collection_select :wishlist_id, @wishlists, :id, :name, class: "form-control" %>
 	</div>
 	
