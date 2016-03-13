@@ -3,6 +3,7 @@ class Gift < ActiveRecord::Base
   belongs_to :user
   belongs_to :wishlist
   validates  :wishlist, presence: true
+  validates :url, presence: true
   belongs_to :interest
 
   has_attached_file :image, styles: { medium: "300x300>", thumb: "200x200>" }, default_url: "/images/:style/missing.png"

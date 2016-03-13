@@ -15,7 +15,7 @@
 
 	<% user.wishlists.each do |wishlist| %>
 		<div class="well">
-			<% if wishlist.gifts.nil? %>
+			<% if wishlist.gifts.empty? %>
 				<%= link_to image_tag("gift.png"), wishlist %>
 			<% else %>
 			<%= link_to image_tag(wishlist.gifts.first.image.url(:thumb)), wishlist %>

@@ -40,7 +40,9 @@
 <% if !params[:q].nil? %>
 
 	<% if !@gifts.empty? %>
+	<div class="grid">
 		<%= render 'gifts' %>
+	</div>
 	<% end %>
 
 <% else %>
