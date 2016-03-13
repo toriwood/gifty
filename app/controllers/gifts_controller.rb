@@ -2,6 +2,27 @@ class GiftsController < ApplicationController
   require 'metainspector'
   before_filter :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
   
+
+  def search
+    @q = Gift.ransack(params[:q])
+    @gifts = @q.result.includes(:user, :wishlist)
+
+    @interests = []
+    Interest.all.each do |interest|
+      @interests << interest.name
+    end
+
+    @holidays = [] 
+    days = Holidays.between(Date.new(Time.now.year, 1, 1), Date.new(Time.now.year, 12, 31), :us, :informal)
+
+    days.each do |day|
+      @holidays << day[:name]
+    end
+
+    @holidays << "Birthday"
+
+  end
+
   def index
   	if params[:search]
       @gifts = Gift.search(params[:search]).order("created_at DESC")

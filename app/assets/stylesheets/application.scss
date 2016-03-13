@@ -327,3 +327,17 @@ select {
    overflow: hidden;
    border-radius: 7px;
 }
+
+.column-4 {
+	column-span: all;
+	-webkit-column-span: all;
+}
+
+.form-inline {
+	width: 20%;
+	display: inline-block;
+}
+
+.form-label {
+	width: 125px;
+}

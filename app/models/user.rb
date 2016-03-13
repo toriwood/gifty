@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+
   validates :username, presence: true, uniqueness: true
 
 	serialize :interests, Array
@@ -15,7 +16,6 @@ class User < ActiveRecord::Base
   has_many :inverted_relationships, class_name: "Relationship", foreign_key: "friend_id"
   has_many :followers, through: :inverted_relationships, source: :user
 
-
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -25,6 +25,16 @@ class User < ActiveRecord::Base
   	(Date.today - self.birthday).to_i / 365
   end
 
+#calculate age to allow for age search in form using ransack gem
+  scope :age_between, lambda{|from_age, to_age|
+  if from_age.present? and to_age.present?
+    where( :birthday =>  (Date.today - to_age.to_i.year)..(Date.today - from_age.to_i.year) )
+  end
+}
+
+  ransacker :age, :formatter => proc {|v| Date.today - v.to_i.year} do |parent|
+    parent.table[:birthday]
+  end   
 
   has_attached_file :image, 
     styles: { medium: "300x300#", thumb: "100x100#" }, 
