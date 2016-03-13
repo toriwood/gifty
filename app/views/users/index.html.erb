@@ -1,17 +1,18 @@
 <div class="grid">
 
-	<% notifications.inspect %>
+	<% if user_signed_in? %>
 
-	<% if user_signed_in? && notifications.count > 0 %>
-	<div class="jumbotron">
-    <%= image_tag("people.png", width: "150px", height: "150px", class: "pull-left", style: "margin-right: 40px;") %>
-      <div class="container celebrating">
-        <h2><%= current_user.name %>, some of your friends are celebrating!</h2>
-				<% notifications.each do |n| %>
-					<p><%= n %></p>
-				<% end %>
-  		</div>
-  </div>
+			<% if notifications.count > 0 %>
+			<div class="jumbotron">
+		    <%= image_tag("people.png", width: "150px", height: "150px", class: "pull-left", style: "margin-right: 40px;") %>
+		      <div class="container celebrate">
+		        <h2><%= current_user.name %>, some of your friends are celebrating!</h2>
+						<% notifications.each do |n| %>
+							<p><%= n %></p>
+						<% end %>
+		  		</div>
+		  </div>
+		  <% end %>
 
 	<%= link_to new_gift_path do %>
 			<div class="well add-new">
@@ -22,7 +23,7 @@
 				Add A Gift
 			</div>
 		<% end %>
-  <% end %>
+<% end %>
 
 		<div class="clearfix"></div>
 
