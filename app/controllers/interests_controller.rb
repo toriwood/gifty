@@ -4,7 +4,7 @@ class InterestsController < ApplicationController
   end
 
   def show
-    @gifts = Gift.all
+    @wishlists = Wishlist.all
   end
 
 

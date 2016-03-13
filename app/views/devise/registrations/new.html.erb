@@ -44,12 +44,14 @@
     <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
   </div>
 
+<hr>
+
   <h3>Optional Fields</h3>
   <h4>You don't have to fill these out, but it will help make Gifted better for all users, including you! You can always access these again by editing your account.</h4>
 
    <div class="form-group">
     <%= f.label :image, "Upload a picture of yourself:" %>
-    <%= f.file_field :image %>
+    <%= f.file_field :image, class: "btn btn-primary" %>
   </div>
 
   <br>
@@ -111,7 +113,7 @@
   </div>
 </div>
 
-    <h4>Select holidays below that are important to you.</h4>
+    <%= f.label :special_days, "Select holidays below that are important to you." %>
      <p>If your followers choose to tag you, they'll get reminders about your special days. We automatically include your birthday.</p>
       <div class="grid">
         <% holidays.each do |holiday| %>

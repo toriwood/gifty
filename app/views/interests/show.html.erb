@@ -2,8 +2,9 @@
 
 <div class="container">
 <div class="grid">
-	<% @gifts.each do |gift| %>
-		<% if gift.user.interests.include?(interest.name) %>
+	<% @wishlists.each do |wishlist| %>
+		<% if wishlist.interest == interest.name %>
+		<% wishlist.gifts.each do |gift| %>
 		<div class="well">
 			<div class="title">
 				<h3><%= link_to gift.name.titlecase, gift %></h3>
@@ -39,5 +40,6 @@
 
 		<% end %>
 	<% end %>
+<% end %>
 </div>
 </div>

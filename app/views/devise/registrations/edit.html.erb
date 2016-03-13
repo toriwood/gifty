@@ -44,12 +44,14 @@
     <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
   </div>
 
+<hr>
+
   <h3>Optional Fields</h3>
   <h4>You don't have to fill these out, but it will help make Gifted better for all users, including you!</h4>
 
    <div class="form-group">
     <%= f.label :image, "Upload a picture of yourself:" %>
-    <%= f.file_field :image %>
+    <%= f.file_field :image, class: "btn btn-primary" %>
   </div>
 
   <br>

@@ -7,14 +7,14 @@
 <% if !current_user.interests.nil? %>
 <div class="form-group">
 	<%= f.label :interest, "Does this wishlist relate to any of your interests? (If not, we'll assign it to the random category.)" %> <br>
-	<%= f.select :interest, current_user.interests, include_blank: true, class: "form-control dropdown", prompt: "Select an interest"%>
+	<%= f.select :interest, current_user.interests, include_blank: true, class: "form-control", prompt: "Select an interest"%>
 </div>
 <% end %>
 
 <% if !current_user.special_days.nil? %>
 <div class="form-group">
 	<%= f.label :special_day, "Does this wishlist relate to any of your important holidays?" %> <br>
-	<%= f.select :special_day, current_user.special_days, include_blank: true, prompt: "Select a holiday", class: "form-control dropdown" %>
+	<%= f.select :special_day, current_user.special_days.keys, include_blank: true, prompt: "Select a holiday", class: "form-control" %>
 </div>
 <% end %>
 
