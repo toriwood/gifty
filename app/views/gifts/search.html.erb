@@ -17,7 +17,7 @@
 	
 	<div class="form-group">
 		<%= f.label :interest_id, "Interests:", class: "form-label" %>
-		<%= f.collection_select(:interest_id_eq, @interests, :id, :name, html_options: { class: "form-control form-inline", prompt: "Select an interest", include_blank: true })%>
+		<%= f.collection_select :interest_id_eq, @interests, :id, :name, class: "form-control form-inline", prompt: "Select an interest", include_blank: true %>
 	</div>
 	
 	<div class="form-group">

@@ -31,7 +31,6 @@ class GiftsController < ApplicationController
   end
 
   def edit
-    @interests = current_user.interests
   	@wishlists = Wishlist.all
     page = MetaInspector.new(gift.url)
     images = page.images.with_size.take(5)
@@ -59,8 +58,13 @@ class GiftsController < ApplicationController
       redirect_to new_wishlist_path
       flash[:danger] = "You must create a wishlist first in order to save your gift."     
     end
+  
+  @interests = []
 
-    @interests = current_user.interests
+      current_user.interests.each do |i|
+        interest = Interest.find_by_name(i)
+        @interests << interest
+      end
   end
 
   def show

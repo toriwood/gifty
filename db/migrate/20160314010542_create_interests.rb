@@ -4,8 +4,6 @@ class CreateInterests < ActiveRecord::Migration
       t.string :name
       t.string :subcategory
       t.string :category
-
-      t.timestamps null: false
     end
   end
 end
