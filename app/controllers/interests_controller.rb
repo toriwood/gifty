@@ -4,7 +4,7 @@ class InterestsController < ApplicationController
   end
 
   def show
-    @wishlists = Wishlist.all
+    @gifts= Gift.where(interest_id: params[:id])
   end
 
 

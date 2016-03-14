@@ -1,45 +1,12 @@
 <h1>People with wishlists related to <%= interest.name %> saved these gifts:</h1>
 
 <div class="container">
-<div class="grid">
-	<% @wishlists.each do |wishlist| %>
-		<% if wishlist.interest == interest.name %>
-		<% wishlist.gifts.each do |gift| %>
-		<div class="well">
-			<div class="title">
-				<h3><%= link_to gift.name.titlecase, gift %></h3>
-				<%= link_to gift do %>
-					<% if gift.image_file_name.nil? %>
-						<%= image_tag gift.image_remote_url %>
-					<% else %>
-						<%= image_tag gift.image.url(:thumb) %>
-					<% end %>
-				<% end %>
-			</div>
-		<p><%= gift.description %></p>
-			
-<div class="clearfix"></div>
+	<div class="grid">
+		
+		<%= render 'gifts/gifts' %>
 
-		<hr>
+	<div class="clearfix"></div>
 
-		<h6><%= link_to image_tag(gift.user.image.url(:thumb), class: "show-image"), gift.user, class: "pull-left" %></h6>
-		<div class="pull-left">
-			<h6><%= link_to gift.wishlist.name, gift.wishlist %></h6> 
-			<h6><%= link_to "by #{gift.user.username}", gift.user %></h6>
-		</div>
 
-			<% if user_signed_in? && current_user.id == gift.user_id %>
-			<div class="clearfix"></div>
-				<hr>
-				<%= link_to "Edit", edit_gift_path(id: gift.id), class: "btn btn-primary" %>
-				<%= link_to "Delete", gift_path(id: gift.id), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
-			<% end %>
 	</div>
-<div class="clearfix"></div>
-
-
-		<% end %>
-	<% end %>
-<% end %>
-</div>
 </div>
