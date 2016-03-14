@@ -11,6 +11,7 @@ gem 'simple_form'
 gem 'holidays'
 gem 'ransack'
 gem 'figaro'
+gem 'aws-sdk'
 
 gem 'rails', '4.2.4'
 gem 'sass-rails', '~> 5.0'
