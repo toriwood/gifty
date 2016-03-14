@@ -41,6 +41,9 @@
 			<% end %>
 		</div>
 		<p><%= gift.description %></p>
+		<% if user_signed_in? && current_user.id != gift.user.id %>
+		<%= link_to "Regift It", new_gift_path(url: gift.url), class: "btn btn-primary" %>
+		<% end %>
 
 		<hr>
 
@@ -49,6 +52,8 @@
 			<h6><%= link_to gift.wishlist.name, gift.wishlist %></h6> 
 			<h6><%= link_to "by #{gift.user.username}", gift.user %></h6>
 		</div>
+
+
 
 			<% if user_signed_in? && current_user.id == gift.user_id %>
 			<div class="clearfix"></div>
