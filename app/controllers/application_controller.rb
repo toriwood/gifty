@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 	helper_method :notifications
 
 	def interests
-		@interests = Interest.uniq(:category).take(20)
+		@interests = Interest.uniq(:category).sort.take(20)
 	end
 
 	def notifications
