@@ -27,12 +27,12 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse navbar-ex1-collapse">
         
-        <%= form_tag(search_gifts_path, :method => "get", class: "navbar-left navbar-form") do %>
+        <%= form_tag(gifts_path, :method => "get", class: "navbar-left navbar-form") do %>
         <div>
           <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Find Gifts" %>
           <%= submit_tag "Submit", class: "btn btn-primary" %> <br>
-          <%= link_to "Advanced Search", search_gifts_path, class: "mini-link" %>
           </div>  
+          <%= link_to "Advanced Search", search_gifts_path, class: "mini-link pull-left" %>
         <% end %>
 
         <ul class="nav navbar-nav navbar-right">
