@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
 
   has_attached_file :image, 
     styles: { medium: "300x300#", thumb: "100x100#" }, 
-      default_url: "https://s3.amazonaws.com/gifted.twood/missing.png?X-Amz-Date=20160315T120842Z&X-Amz-Expires=300&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Signature=ceda7526a139a576b592a815b31d8e20e6a15f627589eccb6491fc05b4efd555&X-Amz-Credential=ASIAIY4N5XDCD6YQ4RGA/20160315/us-east-1/s3/aws4_request&X-Amz-SignedHeaders=Host&x-amz-security-token=AQoDYXdzEF0agAJrYCkbxTqqW7JF0ruzZWsiXbu4tapVojCQVUtHlp/61MhyMyh8NxhN6LOicG6pWvEA6APu79B1FPLAZ2c1mJJnZExJP2%2BHGSn/1RlRYk/ieCQszWP3SIpqRrda5/sPA48JA9G54CzDwx6RY/6YwpvnowmVoD9rHCIxELk6VocN6iymEENQkNVC9wWTJH2nfpZL6CuRdWxpqJRhc6dFl76lj%2B5WxLA/8CGMcqTrI5K3/huwiUsrCe1qzxU/RBrIc9/EYgnpI%2B56VKy1f6GNeO7M7pgpjZuYLVVfOaDvft2SAFQVmRXwzZ3GwNKQrq4/D2UoTvBcx5YpsnXUHHQDLZ%2BxILD2n7cF"
+      default_url: ActiveActionController::Base.helpers.asset_path('images/missing.png')
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
 end
