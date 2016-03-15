@@ -41,6 +41,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
       @user.special_days["Birthday"] = @user.birthday
       @user.save
     end
+
+    sign_in(@user, :bypass => true)
   end
 
   protected

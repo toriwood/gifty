@@ -4,7 +4,7 @@ Rails.application.configure do
     :storage => :s3,
     :s3_credentials => {
       :bucket => 'gifted.twood',
-      :s3_credentials => "#{Rails.root}/config/application.yml",
+      :s3_credentials => "#{Rails.root}/config/aws.yml"
     }
   }
 
