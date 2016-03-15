@@ -2,6 +2,6 @@
 
 Gifted is an application that allows users to create wishlists with gifts they'd like that are visible to their friends and family. Users can follow each other and also choose to "celebrate" with other users, which creates reminder notifications about that user when they have an upcoming special event. 
 
-The application utilizes the metainspector gem to allow users to add a gift simply by pasting in the URL of the item they would like. This gem pulls all relevant data and images from the page and it is automatially populated in the create page for the gift. The user then has the option to edit the title, description, and image immediately before saving. 
+The application utilizes the metainspector gem to allow users to add a gift simply by pasting in the URL of the item they would like. This gem pulls all relevant data and images from the page and it is automatically populated in the create page for the gift. The user then has the option to edit the title, description, and image immediately before saving. 
 
 You can find it here: http://giftyy.herokuapp.com/
