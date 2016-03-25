@@ -2,9 +2,9 @@ class Gift < ActiveRecord::Base
   attr_reader :image_remote_url
   belongs_to :user
   belongs_to :wishlist
-  validates  :wishlist, presence: true
-  validates :url, presence: true
   belongs_to :interest
+
+  validates :wishlist, :url, presence: true
 
   has_attached_file :image, styles: { medium: "300x300>", thumb: "200x200>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/

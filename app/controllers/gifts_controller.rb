@@ -32,6 +32,7 @@ class GiftsController < ApplicationController
 
   def edit
   	@wishlists = Wishlist.all
+
     page = MetaInspector.new(gift.url)
     images = page.images.with_size.take(5)
     @images = []
@@ -51,7 +52,7 @@ class GiftsController < ApplicationController
   end
 
   def new
-    @gift = Gift.new(url: params[:url], wishlist_id: params[:format])
+    @gift = Gift.new(wishlist_id: params[:format])
     @wishlists = current_user.wishlists
 
     if @wishlists.empty?
@@ -60,11 +61,10 @@ class GiftsController < ApplicationController
     end
   
   @interests = []
-
-      current_user.interests.each do |i|
-        interest = Interest.find_by_name(i)
-        @interests << interest
-      end
+  current_user.interests.each do |i|
+    interest = Interest.find_by_name(i)
+    @interests << interest
+  end
   end
 
   def show
@@ -72,10 +72,6 @@ class GiftsController < ApplicationController
 
   def create
     @gift = Gift.new(gift_params)
-
-    if @gift.url.include?("amazon.com")
-      @gift.url += "&#{ENV['amazon_affiliate_key']}"
-    end
 
     page = MetaInspector.new(gift_params[:url])
     if page.meta_tags['name']['twitter:title'] == nil
@@ -89,6 +85,10 @@ class GiftsController < ApplicationController
         @gift.description = page.meta_tags['name']['twitter:description'][0]
       end
     @gift.image_remote_url = page.images.best
+    
+    if @gift.url.include?("amazon.com")
+      @gift.url += "&#{ENV['amazon_affiliate_key']}"
+    end
 
     if @gift.save
       redirect_to edit_gift_path(@gift.id)
