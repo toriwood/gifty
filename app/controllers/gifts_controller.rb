@@ -89,7 +89,6 @@ class GiftsController < ApplicationController
         @gift.description = page.meta_tags['name']['twitter:description'][0]
       end
     @gift.image_remote_url = page.images.best
-    @gift.save
 
     if @gift.save
       redirect_to edit_gift_path(@gift.id)
