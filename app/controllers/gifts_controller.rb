@@ -109,10 +109,6 @@ class GiftsController < ApplicationController
   def update
   	@gift = Gift.update(params[:id], gift_params)
 
-    if @gift.url.include?("amazon.com")
-      @gift.url += "&#{ENV['amazon_affiliate_key']}"
-    end
-
   	if @gift.save
   		flash[:success] = "The gift information was updated in the #{gift.wishlist.name.titlecase} wishlist."
   		redirect_to @gift
