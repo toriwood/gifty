@@ -7,6 +7,11 @@ class WishlistsController < ApplicationController
 
   def new
   	@wishlist = Wishlist.new
+    @interests = Interest.where('id in (?)', current_user.interests.map { |i| i.to_i })
+  end
+
+  def edit
+    @interests = Interest.where('id in (?)', current_user.interests.map { |i| i.to_i })  
   end
 
   def show
@@ -53,7 +58,7 @@ private
 	helper_method :wishlist
 	
 	def wishlist_params
-		params.require(:wishlist).permit(:id, :name, :user_id, :interest, :special_day)
+		params.require(:wishlist).permit(:id, :name, :user_id, :interest_id, :special_day)
 	end
 
 

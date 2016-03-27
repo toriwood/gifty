@@ -30,6 +30,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def update
     super do
+      binding.pry
     if !params[:user][:special_days].nil?
       @user.special_days.clear
       params[:user][:special_days].each do |day|

@@ -4,7 +4,8 @@ class Gift < ActiveRecord::Base
   belongs_to :wishlist
   belongs_to :interest
 
-  validates :wishlist, :url, presence: true
+  validates :wishlist, presence: true
+  validates :url, presence: true, allow_blank: false
 
   has_attached_file :image, styles: { medium: "300x300>", thumb: "200x200>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/

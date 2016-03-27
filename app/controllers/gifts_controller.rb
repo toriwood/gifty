@@ -43,12 +43,7 @@ class GiftsController < ApplicationController
     
     @images << page.images.best
 
-    @interests = []
-
-      current_user.interests.each do |i|
-        interest = Interest.find_by_name(i)
-        @interests << interest
-      end
+  @interests = Interest.where('id in (?)', current_user.interests.map { |i| i.to_i })
   end
 
   def new
@@ -60,11 +55,7 @@ class GiftsController < ApplicationController
       flash[:danger] = "You must create a wishlist first in order to save your gift."     
     end
   
-  @interests = []
-  current_user.interests.each do |i|
-    interest = Interest.find_by_name(i)
-    @interests << interest
-  end
+  @interests = Interest.where('id in (?)', current_user.interests.map { |i| i.to_i })
   end
 
   def show
@@ -73,28 +64,27 @@ class GiftsController < ApplicationController
   def create
     @gift = Gift.new(gift_params)
 
-    page = MetaInspector.new(gift_params[:url])
-    if page.meta_tags['name']['twitter:title'] == nil
-        @gift.name = page.title
-      else
-        @gift.name = page.meta_tags['name']['twitter:title'][0]
-      end
-      if page.meta_tags['name']['twitter:description'] == nil
-        @gift.description = page.description
-      else
-        @gift.description = page.meta_tags['name']['twitter:description'][0]
-      end
-    @gift.image_remote_url = page.images.best
-    
-    if @gift.url.include?("amazon.com")
-      @gift.url += "&#{ENV['amazon_affiliate_key']}"
-    end
-
     if @gift.save
+      page = MetaInspector.new(gift_params[:url])
+      if page.meta_tags['name']['twitter:title'] == nil
+          @gift.name = page.title
+        else
+          @gift.name = page.meta_tags['name']['twitter:title'][0]
+        end
+        if page.meta_tags['name']['twitter:description'] == nil
+          @gift.description = page.description
+        else
+          @gift.description = page.meta_tags['name']['twitter:description'][0]
+        end
+      @gift.image_remote_url = page.images.best
+      
+      if @gift.url.include?("amazon.com")
+        @gift.url += "&#{ENV['amazon_affiliate_key']}"
+      end
       redirect_to edit_gift_path(@gift.id)
     else
-      @gift.errors.messages.each do |message|
-        flash[:danger] = message[1][0]
+      @gift.errors.messages.each do |k, v|
+        flash[:danger] = "#{k.to_s.titlecase} #{v[0]}."
       end
       redirect_to new_gift_path
     end

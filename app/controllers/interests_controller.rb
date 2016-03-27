@@ -4,9 +4,10 @@ class InterestsController < ApplicationController
   end
 
   def show
-    @gifts= Gift.where(interest_id: params[:id])
+    @gifts = Gift.
+              joins(:wishlist).
+              where('wishlists.interest_id in (?) OR gifts.interest_id in (?)', interest.id, interest.id)
   end
-
 
   private
 

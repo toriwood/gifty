@@ -1,4 +1,5 @@
 class Wishlist < ActiveRecord::Base
 	belongs_to :user
+  belongs_to :interest
 	has_many :gifts, dependent: :destroy
 end
