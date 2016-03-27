@@ -1,0 +1,34 @@
+%h1 Edit Gift
+.container
+  = form_for gift, html: { multipart: true } do |f|
+    = f.hidden_field :user_id, value: current_user.id
+    .form-group
+      = f.label :name
+      = f.text_field :name, autofocus: true, class: "form-control"
+    .form-group
+      = f.label :url
+      = f.text_field :url, class: "form-control"
+    .form-group
+      = f.label :description
+      = f.text_field :description, class: "form-control"
+    %div
+      = f.label "Current Image"
+      %br/
+      = image_tag gift.image.url(:thumb)
+    %div
+      = f.label "Other Image Options (click below to change image)"
+      %br/
+      - @images.each do |image|
+        = link_to image_tag(image, class: 'preview'), {:controller => 'gifts', :action => 'update_image', method: :post, :image => image}
+    %br/
+    - if !current_user.interests.nil?
+      .form-group
+        = f.label :interest_id, "Does this gift relate to any of your interests? (If not, we'll assign it to the random category.)"
+        %br/
+        = f.collection_select :interest_id, @interests, :id, :name, include_blank: true, class: "form-control", prompt: "Select an interest"
+    .form-group
+      = f.label :wishlist_id
+      %br/
+      = f.collection_select :wishlist_id, @wishlists, :id, :name, class: "form-control"
+    .actions
+      = f.submit "Update Gift", class: "btn btn-primary"

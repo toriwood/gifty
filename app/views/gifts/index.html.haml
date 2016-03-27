@@ -1,0 +1,13 @@
+.container.jumbotron#main
+	%h1 GIFTED
+	%h2 Step Up Your Gifting Skills
+.grid
+	- if user_signed_in?
+		= link_to new_gift_path do
+			.well.add-new
+				.plus-sign
+					%i.glyphicon.glyphicon-plus
+				%br/
+				Add A Gift
+	.clearfix
+	= render 'gifts'

@@ -1,0 +1,7 @@
+= render 'show'
+.grid
+  - user.celebrating.uniq.each do |celebrating|
+    .well
+      %strong
+        %h4= link_to User.find(celebrating).username, user_path(id: celebrating)
+      = link_to image_tag(User.find(celebrating).image.url(:thumb), class: "profile-image"), user_path(id: celebrating)

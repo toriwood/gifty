@@ -1,0 +1,22 @@
+.container.show
+  %h3= wishlist.name
+  %h4
+    By: #{link_to wishlist.user.username, wishlist.user}
+  - if user_signed_in? && current_user.id == wishlist.user_id
+    = link_to edit_wishlist_path(id: wishlist.id), class: "btn btn-primary" do
+      %i.glyphicon.glyphicon-pencil
+      Edit
+    = link_to wishlist_path, method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure you want to delete this wishlist and all of the gifts along with it?' } do
+      %i.glyphicon.glyphicon-remove
+      Delete Wishlist
+%hr/
+.grid
+  - if user_signed_in? && current_user.id == wishlist.user.id
+    = link_to new_gift_path(wishlist) do
+      .well.add-new
+        .plus-sign
+          %i.glyphicon.glyphicon-plus
+        %br/
+        Add A Gift
+  .clearfix
+  = render 'gifts/gifts'

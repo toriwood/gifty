@@ -1,0 +1,23 @@
+- @gifts.each do |gift|
+  .well
+    .title
+      %h3= link_to gift.name.titlecase, gift
+      = link_to gift do
+        - if gift.image_file_name.nil?
+          = image_tag gift.image_remote_url
+        - else
+          = image_tag gift.image.url(:thumb)
+    %p= gift.description
+    - if user_signed_in? && current_user.id != gift.user.id
+      = link_to "Regift It", new_gift_path(url: gift.url), class: "btn btn-primary"
+    %hr/
+    %h6= link_to image_tag(gift.user.image.url(:thumb), class: "show-image"), gift.user, class: "pull-left"
+    .pull-left
+      %h6= link_to gift.wishlist.name, gift.wishlist
+      %h6= link_to "by #{gift.user.username}", gift.user
+    - if user_signed_in? && current_user.id == gift.user_id
+      .clearfix
+      %hr/
+      = link_to "Edit", edit_gift_path(id: gift.id), class: "btn btn-primary"
+      = link_to "Delete", gift_path(id: gift.id), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger"
+  .clearfix

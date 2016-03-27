@@ -1,0 +1,17 @@
+= form_for wishlist do |f|
+  .form-group
+    = f.text_field :name, autofocus: true, class: "form-control", placeholder: :name
+  - if !current_user.interests.nil?
+    .form-group
+      = f.label :interest, "Does this wishlist relate to any of your interests? (If not, we'll assign it to the random category.)"
+      %br/
+      = f.collection_select :interest_id, @interests, :id, :name, include_blank: true, class: "form-control", prompt: "Select an interest"
+  - if !current_user.special_days.nil?
+    .form-group
+      = f.label :special_day, "Does this wishlist relate to any of your important holidays?"
+      %br/
+      = f.select :special_day, current_user.special_days.keys, include_blank: true, prompt: "Select a holiday", class: "form-control"
+  = f.hidden_field(:user_id, :value=>current_user.id)
+  .actions
+    = f.submit "Submit", class: 'btn btn-primary'
+    %br/

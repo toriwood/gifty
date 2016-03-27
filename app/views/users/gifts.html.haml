@@ -1,0 +1,20 @@
+= render 'show'
+.grid
+  - if user_signed_in? && current_user.id == user.id
+    = link_to new_gift_path do
+      .well.add-new
+        .plus-sign
+          %i.glyphicon.glyphicon-plus
+        %br/
+        Add A Gift
+  .clearfix
+  - user.gifts.each do |gift|
+    .well
+      .title
+        %h3= link_to gift.name.titlecase, gift
+        = link_to gift do
+          - if gift.image_file_name.nil?
+            = image_tag gift.image_remote_url
+          - else
+            = image_tag gift.image.url(:thumb)
+      %p= gift.description

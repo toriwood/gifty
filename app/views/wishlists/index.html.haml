@@ -1,0 +1,24 @@
+.grid
+  - if user_signed_in?
+    = link_to new_wishlist_path do
+      .well.add-new
+        .plus-sign
+          %i.glyphicon.glyphicon-plus
+        %br/
+        Add A Wishlist
+  - @wishlists.each do |wishlist|
+    .well
+      %h3= link_to wishlist.name.titlecase, wishlist
+      - if wishlist.gifts.first == nil
+        = link_to image_tag("gift.png"), wishlist
+      - else
+        = link_to image_tag(wishlist.gifts.first.image.url(:thumb)), wishlist
+      %hr/
+      %h6= link_to image_tag(wishlist.user.image.url(:thumb), class: "show-image"), wishlist.user, class: "pull-left"
+      .pull-left
+        %h6= link_to "#{wishlist.user.username}", wishlist.user
+      - if user_signed_in? && current_user.id == wishlist.user_id
+        .clearfix
+        %hr/
+        = link_to "Edit", edit_wishlist_path(id: wishlist.id), class: "btn btn-primary"
+        = link_to "Delete", wishlist_path(id: wishlist.id), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger"

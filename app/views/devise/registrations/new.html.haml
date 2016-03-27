@@ -1,0 +1,87 @@
+%h2 Sign up
+= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true }) do |f|
+  = devise_error_messages!
+  .form-group
+    = f.label :email, required: true
+    %br/
+    = f.email_field :email, autofocus: true, class: "form-control"
+  .form-group
+    = f.label :name, required: true
+    %br/
+    = f.text_field :name, class: "form-control"
+  .form-group
+    = f.label :username, required: true
+    %br/
+    = f.text_field :username, class: "form-control"
+  .form-group
+    = f.label :birthday, required: true
+    %br/
+    = f.date_select "birthday", prompt: {day: 'Select day', month: 'Select month', year: 'Select year'}, start_year: Date.today.year - 100, end_year: Date.today.year
+  .form-group
+    = f.label :gender, required: true
+    %br/
+    = f.radio_button :gender, "male"
+    = f.label :gender, "male"
+    = f.radio_button :gender, "female"
+    = f.label :gender, "female"
+  .form-group
+    = f.label :password, required: true
+    - if @minimum_password_length
+      %em
+        (#{@minimum_password_length} characters minimum)
+    %br/
+    = f.password_field :password, autocomplete: "off", class: "form-control"
+  .form-group
+    = f.label :password_confirmation, required: true
+    %br/
+    = f.password_field :password_confirmation, autocomplete: "off", class: "form-control"
+  %hr/
+  %h3 Optional Fields
+  %h4 You don't have to fill these out, but it will help make Gifted better for all users, including you! You can always access these again by editing your account.
+  .form-group
+    = f.label :image, "Upload a picture of yourself:"
+    = f.file_field :image, class: "btn btn-primary"
+  %br/
+  #accordion-top.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
+    .panel.panel-default
+      #heading-top.panel-heading.custom{:role => "tab"}
+        %h4.panel-title
+          %a{"aria-controls" => "collapse-top", "aria-expanded" => "true", "data-parent" => "#accordion-top", "data-toggle" => "collapse", :href => "#collapse-top", :role => "button"}
+            %span.glyphicon.glyphicon-plus
+            %strong Add Interests (Please select at least 2)
+      #collapse-top.panel-collapse.collapse{"aria-labelledby" => "heading-top", :role => "tabpanel"}
+        .panel-body.custom
+          - interests.group_by(&:category).each_with_index do |(category, interests), index|
+            .panel-group{"aria-multiselectable" => "true", :id => "accordion#{index}", :role => "tablist"}
+              .panel.panel-default
+                .panel-heading.custom{:id => "heading#{index}", :role => "tab"}
+                  %h4.panel-title
+                    %a{"aria-controls" => "collapse#{index}", "aria-expanded" => "true", "data-parent" => "#accordion#{index}", "data-toggle" => "collapse", :href => "#collapse#{index}", :role => "button"}
+                      %span.glyphicon.glyphicon-plus
+                      %strong= category
+                .panel-collapse.collapse{"aria-labelledby" => "heading#{index}", :id => "collapse#{index}", :role => "tabpanel"}
+                  .panel-body.custom
+                    - interests.group_by(&:subcategory).each do |subcategory, interests|
+                      .panel-group{:id => "accordion-#{subcategory.gsub(' ','-')}"}
+                        .panel.panel-default
+                          .panel-heading.custom{:id => "heading-#{subcategory.gsub(' ','-')}"}
+                            %h4.panel-title
+                              %a{"aria-controls" => "collapse-#{subcategory.gsub(' ','-')}", "aria-expanded" => "true", "data-parent" => "#accordion-#{subcategory.gsub(' ','-')}", "data-toggle" => "collapse", :href => "#collapse-#{subcategory.gsub(' ','-')}", :role => "button"}
+                                %span.glyphicon.glyphicon-plus
+                                %strong= subcategory
+                          .panel-collapse.collapse.in{"aria-labelledby" => "heading-#{subcategory.gsub(' ','-')}", :id => "collapse-#{subcategory.gsub(' ','-')}", :role => "tabpanel"}
+                            .panel-body.custom
+                              - interests.each do |interest|
+                                = f.check_box :interests, {multiple: true}, interest.id, nil
+                                = f.label interest.name, interest.name
+                                %br/
+  = f.label :special_days, "Select holidays below that are important to you."
+  %p If your followers choose to tag you, they'll get reminders about your special days. We automatically include your birthday.
+  .grid
+    - holidays.each do |holiday|
+      = f.check_box :special_days, {multiple: true}, "#{holiday[:name]}:#{holiday[:date]}", nil
+      = f.label holiday[:name], holiday[:name]
+      %br/
+  .actions
+    = f.submit "Sign up", class: "btn btn-primary"
+= render "devise/shared/links"

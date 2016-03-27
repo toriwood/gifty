@@ -13,6 +13,7 @@ gem 'ransack'
 gem 'figaro'
 gem 'aws-sdk', '< 2.0'
 gem 'rails_12factor'
+gem 'haml'
 
 gem 'rails', '4.2.4'
 gem 'sass-rails', '~> 5.0'

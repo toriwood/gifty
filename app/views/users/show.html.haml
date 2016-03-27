@@ -1,0 +1,16 @@
+= render 'show'
+.grid
+  - if user_signed_in? && current_user.id == user.id
+    = link_to new_wishlist_path do
+      .well.add-new
+        .plus-sign
+          %i.glyphicon.glyphicon-plus
+        %br/
+        Add A Wishlist
+  - user.wishlists.each do |wishlist|
+    .well
+      - if wishlist.gifts.empty?
+        = link_to image_tag("gift.png"), wishlist
+      - else
+        = link_to image_tag(wishlist.gifts.first.image.url(:thumb)), wishlist
+      %h3= link_to wishlist.name.titlecase, wishlist

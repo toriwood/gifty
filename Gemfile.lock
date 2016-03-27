@@ -95,6 +95,8 @@ GEM
       thor (~> 0.14)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    haml (4.0.7)
+      tilt
     holidays (3.2.0)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
@@ -179,7 +181,7 @@ GEM
       activesupport (= 4.2.4)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (10.5.0)
+    rake (11.1.1)
     ransack (1.7.0)
       actionpack (>= 3.0)
       activerecord (>= 3.0)
@@ -244,6 +246,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   devise
   figaro
+  haml
   holidays
   jbuilder (~> 2.0)
   jquery-rails

@@ -1,0 +1,15 @@
+.container
+	.grid
+		- @interests.group_by(&:category).each do |category, interests|
+			.well
+				%strong
+					%h3
+						= category
+				- interests.group_by(&:subcategory).each do |subcategory, interests|
+					%div
+						%strong
+							%h4
+								= subcategory
+					- interests.each do |interest|
+						= link_to interest.name, interest
+						%br/
