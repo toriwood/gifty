@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160326220855) do
+ActiveRecord::Schema.define(version: 20160328025521) do
 
   create_table "gifts", force: :cascade do |t|
     t.string   "name"
@@ -26,6 +26,16 @@ ActiveRecord::Schema.define(version: 20160326220855) do
     t.datetime "image_updated_at"
     t.integer  "user_id"
     t.integer  "interest_id"
+    t.integer  "holiday_id"
+  end
+
+  create_table "holidays", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.datetime "date"
+    t.boolean  "recurring?"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "interests", force: :cascade do |t|
@@ -79,6 +89,7 @@ ActiveRecord::Schema.define(version: 20160326220855) do
     t.integer  "user_id"
     t.string   "special_day", default: "none"
     t.integer  "interest_id", default: 0
+    t.integer  "holiday_id"
   end
 
 end

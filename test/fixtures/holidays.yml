@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  name: MyString
+  date: 2016-03-27 22:50:17
+  recurring?: false
+
+two:
+  user_id: 1
+  name: MyString
+  date: 2016-03-27 22:50:17
+  recurring?: false

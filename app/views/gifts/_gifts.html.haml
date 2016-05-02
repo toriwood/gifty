@@ -3,10 +3,12 @@
     .title
       %h3= link_to gift.name.titlecase, gift
       = link_to gift do
-        - if gift.image_file_name.nil?
+        - if gift.image_file_name.nil? && !gift.image_remote_url.nil?
           = image_tag gift.image_remote_url
-        - else
+        - elsif !gift.image.nil?
           = image_tag gift.image.url(:thumb)
+        - else
+          = image_tag "missing.png"
     %p= gift.description
     - if user_signed_in? && current_user.id != gift.user.id
       = link_to "Regift It", new_gift_path(url: gift.url), class: "btn btn-primary"

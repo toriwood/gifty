@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
 	
   has_many :wishlists, dependent: :destroy
   has_many :gifts, dependent: :destroy
+  has_many :holidays, dependent: :destroy
+  accepts_nested_attributes_for :holidays
   
   has_many :relationships
   has_many :friends, through: :relationships

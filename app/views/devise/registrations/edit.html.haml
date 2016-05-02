@@ -76,13 +76,14 @@
                                 = f.label interest.name, interest.name
                                 %br/
   %br/
-  %h4 Select holidays below that are important to you.
-  %p If your followers choose to tag you, they'll get reminders about your special days. We automatically include your birthday.
-  .grid
-    - holidays.each do |holiday|
-      = f.check_box :special_days, {multiple: true}, "#{holiday[:name]}:#{holiday[:date]}", nil
-      = f.label holiday[:name], holiday[:name]
-      %br/
+  = f.fields_for :holiday do |ff|
+    %h4 Select holidays below that are important to you.
+    %p If your followers choose to tag you, they'll get reminders about your special days. We automatically include your birthday.
+    .grid
+      - holidays.each do |holiday|
+        = ff.check_box :name, {multiple: true}, holiday[:name], nil
+        = f.label holiday[:name], holiday[:name]
+        %br/
   .actions
     = f.submit "Update", class: "btn btn-primary"
 %h3 Cancel my account

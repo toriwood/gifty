@@ -16,10 +16,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   
   def create
     super do
-    if !params[:user][:special_days].nil?
-      params[:user][:special_days].each do |day|
-        day = day.split(":")
-        @user.special_days[day[0].to_s] = day[1].to_date
+    if !params[:user][:holiday].nil?
+      params[:user][:holiday][:name].each do |day|
+        
       end
     end
 
@@ -29,8 +28,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def update
-    super do
       binding.pry
+    super do
     if !params[:user][:special_days].nil?
       @user.special_days.clear
       params[:user][:special_days].each do |day|

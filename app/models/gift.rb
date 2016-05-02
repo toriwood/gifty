@@ -3,9 +3,11 @@ class Gift < ActiveRecord::Base
   belongs_to :user
   belongs_to :wishlist
   belongs_to :interest
+  belongs_to :holiday
 
-  validates :wishlist, presence: true
+  validates :wishlist_id, presence: true
   validates :url, presence: true, allow_blank: false
+  validates_format_of :url, :with => URI.regexp(['http','https'])
 
   has_attached_file :image, styles: { medium: "300x300>", thumb: "200x200>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
@@ -14,6 +16,8 @@ class Gift < ActiveRecord::Base
     url_value = URI.encode(url_value)
     self.image = URI.parse(url_value)
     @image_remote_url = url_value
+  rescue OpenURI::HTTPError => ex
+    @image_remote_url = nil
   end
 
   def self.search(search)

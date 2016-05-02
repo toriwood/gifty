@@ -76,7 +76,7 @@ class GiftsController < ApplicationController
         else
           @gift.description = page.meta_tags['name']['twitter:description'][0]
         end
-      @gift.image_remote_url = page.images.best
+        @gift.image_remote_url = page.images.best
       
       if @gift.url.include?("amazon.com")
         @gift.url += "&#{ENV['amazon_affiliate_key']}"
