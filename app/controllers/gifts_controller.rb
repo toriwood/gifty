@@ -21,12 +21,7 @@ class GiftsController < ApplicationController
   end
 
   def index
-  	if params[:search]
-      @gifts = Gift.search(params[:search]).order("created_at DESC")
-    else
-      @gifts = Gift.all.order('created_at DESC')
-    end
-    
+    @gifts = Gift.all.order('created_at DESC')
     @interests = Interest.all
   end
 
@@ -66,21 +61,22 @@ class GiftsController < ApplicationController
 
     if @gift.save
       page = MetaInspector.new(gift_params[:url])
-      if page.meta_tags['name']['twitter:title'] == nil
+      if page.meta_tags['name']['title'] == nil
           @gift.name = page.title
         else
-          @gift.name = page.meta_tags['name']['twitter:title'][0]
+          @gift.name = page.meta_tags['name']['title'][0]
         end
-        if page.meta_tags['name']['twitter:description'] == nil
+        if page.meta_tags['name']['description'] == nil
           @gift.description = page.description
         else
-          @gift.description = page.meta_tags['name']['twitter:description'][0]
+          @gift.description = page.meta_tags['name']['description'][0]
         end
         @gift.image_remote_url = page.images.best
       
       if @gift.url.include?("amazon.com")
         @gift.url += "&#{ENV['amazon_affiliate_key']}"
       end
+      @gift.save
       redirect_to edit_gift_path(@gift.id)
     else
       @gift.errors.messages.each do |k, v|
