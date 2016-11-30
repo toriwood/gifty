@@ -43,9 +43,11 @@ class GiftsController < ApplicationController
 
   def new
     @gift = Gift.new(wishlist_id: params[:format])
-    @gift.url = params[:url]
     @wishlists = current_user.wishlists
 
+    if !params[:url].nil?
+      @gift.url = params[:url]
+    end
     if @wishlists.empty?
       redirect_to new_wishlist_path
       flash[:danger] = "You must create a wishlist first in order to save your gift."     
