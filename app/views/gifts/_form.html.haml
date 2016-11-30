@@ -2,8 +2,8 @@
   = form_for gift, html: { multipart: true } do |f|
     = f.hidden_field :user_id, value: current_user.id
     .form-group
-      = f.label :url, "To add a gift, simply	 paste the URL (link) below to gift on the website where you found it:"
-      = f.text_field :url, autofocus: true, class: "form-control", placeholder: "http://www.amazon.com/s/&field-keywords=cool+gift"
+      = f.label :url, "To add a gift, simply paste the URL (link) below to gift on the website where you found it:"
+      = f.text_field :url, autofocus: true, class: "form-control"
     .form-group
       = f.label :wishlist_id
       %br/

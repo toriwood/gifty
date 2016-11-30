@@ -43,6 +43,7 @@ class GiftsController < ApplicationController
 
   def new
     @gift = Gift.new(wishlist_id: params[:format])
+    @gift.url = params[:url]
     @wishlists = current_user.wishlists
 
     if @wishlists.empty?

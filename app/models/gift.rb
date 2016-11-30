@@ -7,6 +7,8 @@ class Gift < ActiveRecord::Base
 
   validates :wishlist_id, presence: true
   validates :url, presence: true, allow_blank: false
+  validates :name, presence: true
+  validates :description, presence: true
   validates_format_of :url, :with => URI.regexp(['http','https'])
 
   has_attached_file :image, styles: { medium: "300x300>", thumb: "200x200>" }, default_url: "/images/:style/missing.png"
