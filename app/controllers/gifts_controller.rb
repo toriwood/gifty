@@ -62,17 +62,17 @@ class GiftsController < ApplicationController
   def create
     @gift = Gift.new(gift_params)
 
-    if @gift.save
+    begin
       page = MetaInspector.new(gift_params[:url])
       if page.meta_tags['name']['title'] == nil
-          @gift.name = page.title
+          @gift.name = page.title[0..49]
         else
-          @gift.name = page.meta_tags['name']['title'][0]
+          @gift.name = page.meta_tags['name']['title'][0][0..49]
         end
         if page.meta_tags['name']['description'] == nil
-          @gift.description = page.description
+          @gift.description = page.description[0..129]
         else
-          @gift.description = page.meta_tags['name']['description'][0]
+          @gift.description = page.meta_tags['name']['description'][0][0..129]
         end
         @gift.image_remote_url = page.images.best
       
@@ -81,7 +81,7 @@ class GiftsController < ApplicationController
       end
       @gift.save
       redirect_to edit_gift_path(@gift.id)
-    else
+    rescue
       @gift.errors.messages.each do |k, v|
         flash[:danger] = "#{k.to_s.titlecase} #{v[0]}."
       end

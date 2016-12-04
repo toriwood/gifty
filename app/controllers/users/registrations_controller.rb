@@ -28,7 +28,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def update
-      binding.pry
     super do
     if !params[:user][:special_days].nil?
       @user.special_days.clear
@@ -37,9 +36,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
         @user.special_days[day[0].to_s] = day[1].to_date
       end
     end
-
-      @user.special_days["Birthday"] = @user.birthday
-      @user.save
+    @user.special_days["Birthday"] = @user.birthday
+    @user.save
     end
 
     sign_in(@user, :bypass => true)
