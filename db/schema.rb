@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160328025521) do
+ActiveRecord::Schema.define(version: 20161206020227) do
 
   create_table "gifts", force: :cascade do |t|
     t.string   "name"
     t.integer  "wishlist_id"
     t.string   "url"
     t.text     "description"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20160328025521) do
     t.integer  "user_id"
     t.integer  "interest_id"
     t.integer  "holiday_id"
+    t.boolean  "fulfilled",          default: false
   end
 
   create_table "holidays", force: :cascade do |t|

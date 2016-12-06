@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get 'user/:id/following' => 'users#following', as: "user_following"
   get 'user/:id/celebrating' => 'users#celebrating', as: "user_celebrating"
 
+  get 'gifts/:id/fulfilled' => 'gifts#fulfill', as: "gift_fulfill"
+ 
   get '/interests' => 'interests#index'
   get '/interests/:id' => 'interests#show', as: "interest"
   match '/gifts/update_image/:id' => 'gifts#update_image', via: [:get, :post]

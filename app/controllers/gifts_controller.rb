@@ -107,6 +107,12 @@ class GiftsController < ApplicationController
   	end  	
   end
 
+  def fulfill
+    gift.fulfilled = true
+    gift.save
+    redirect_to gift_path
+  end
+
   def destroy
   	gift.destroy
   	flash[:success] = "Gift successfully deleted."
@@ -122,7 +128,7 @@ class GiftsController < ApplicationController
   helper_method :gift
 
   def gift_params
-  	params.require(:gift).permit(:id, :name, :wishlist_id, :url, :description, :image, :user_id, :interest_id)  	
+  	params.require(:gift).permit(:id, :name, :wishlist_id, :url, :description, :image, :user_id, :interest_id, :fulfilled)  	
   end
 
 end

@@ -10,6 +10,14 @@
   = link_to "Visit Site", gift.url, target: "blank", class: "btn btn-primary"
   - if user_signed_in? && gift.user.id != current_user.id
     = link_to "Regift It", new_gift_path(url: gift.url), target: "blank", class: "btn btn-primary"
+    - if current_user.following.include?(gift.user_id.to_s)
+      - if gift.fulfilled == false
+        = link_to "Mark As Fulfilled", gift_fulfill_path(id: gift.id, fulfilled: true), class: "btn btn-primary"
+      - else
+        %button.btn.btn-danger
+          This gift has been marked
+          %br
+          as fulfilled by another user
   %hr/
   %h6= link_to image_tag(gift.user.image.url(:thumb), style: "border-radius: 50%;"), gift.user, style: "height: 50px; width: 50px;"
   %div
