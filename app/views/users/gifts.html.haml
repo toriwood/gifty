@@ -17,4 +17,4 @@
             = image_tag gift.image_remote_url
           - else
             = image_tag gift.image.url(:thumb)
-      %p= gift.description
+      %p= gift.description.html_safe
