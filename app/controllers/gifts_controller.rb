@@ -108,8 +108,13 @@ class GiftsController < ApplicationController
   end
 
   def fulfill
-    gift.fulfilled = true
-    gift.save
+    gift.update_attribute(:fulfilled, params[:fulfilled])
+    if gift.save
+      flash[:success] = "Gift successfully marked as fulfilled."
+    else
+      flash[:error] = "Something went wrong. We couldn't mark this gift as fulfilled. Please try again."
+    end
+
     redirect_to gift_path
   end
 
